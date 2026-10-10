@@ -1,0 +1,7 @@
+{
+  "name": "Việt phục HSV - Tôn Vinh Áo Dài Việt Nam",
+  "description": "Nền tảng phối cổ phục Việt Nam theo phong cách hiện đại cho Gen Z với bộ kiểm tra sai lệch văn hóa, gợi ý bối cảnh & thời tiết, cùng Cố vấn AI Lịch sử.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

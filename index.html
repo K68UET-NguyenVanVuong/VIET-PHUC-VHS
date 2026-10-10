@@ -1,0 +1,3469 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Việt phục HSV - Tôn Vinh Áo Dài Việt Nam</title>
+  <meta name="description" content="Nền tảng phối cổ phục Việt Nam theo phong cách hiện đại cho Gen Z với bộ kiểm tra sai lệch văn hóa, gợi ý bối cảnh & thời tiết, cùng Cố vấn AI Lịch sử.">
+  <meta property="og:title" content="Việt phục HSV - Tôn Vinh Áo Dài Việt Nam">
+  <meta property="og:description" content="Nền tảng phối cổ phục Việt Nam theo phong cách hiện đại cho Gen Z với bộ kiểm tra sai lệch văn hóa, gợi ý bối cảnh & thời tiết, cùng Cố vấn AI Lịch sử.">
+
+  <!-- Google Fonts: Sang trọng, Đậm chất Cung Đình & Hiện đại -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome 6 (CDN) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Tailwind CSS Browser CDN v4 -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style>
+    :root {
+      --shirt-color: #D4AF37;
+      --pant-color: #BA181B;
+      --hair-color: #2D2D2D;
+      --hat-color: #EAB308;
+      --bag-color: #B45309;
+      --model-base-scale: 0.5;
+      --model-user-scale: 1.0;
+      --translate-x: 0px;
+      --final-scale: 0.5;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #F9F6F0;
+      color: #1F1A17;
+      overflow-x: hidden;
+    }
+
+    .font-heritage {
+      font-family: 'Cinzel', serif;
+    }
+
+    .font-serif-title {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Tùy chỉnh thanh cuộn thanh mảnh */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #F5F2EB;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #D6CEBE;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #B45309;
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F5F2EB;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D6CEBE;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #B45309;
+    }
+
+    /* Hiệu ứng rung nhẹ khi điểm văn hóa giảm / cảnh báo */
+    @keyframes subtle-shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-2px); }
+      40%, 80% { transform: translateX(2px); }
+    }
+    .shake-alert {
+      animation: subtle-shake 0.4s ease-in-out;
+    }
+
+    /* Hiệu ứng pulse màu ấm nhẹ */
+    @keyframes pulse-amber-glow {
+      0%, 100% {
+        box-shadow: 0 4px 14px rgba(217, 119, 6, 0.25);
+      }
+      50% {
+        box-shadow: 0 4px 22px rgba(234, 88, 12, 0.45);
+      }
+    }
+    .pulse-amber {
+      animation: pulse-amber-glow 2.5s infinite;
+    }
+
+    /* Card & Panel Classes Light Theme */
+    .glass-card {
+      background: #FFFFFF;
+      border: 1px solid #E6DFD5;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    }
+
+    .glass-card-hover:hover {
+      border-color: #C07D1E;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .active-tab-glow {
+      border-bottom: 2px solid #B45309;
+      color: #B45309;
+    }
+
+    .chat-bubble-bot {
+      background: #FCFBF9;
+      border: 1px solid #E6DFD5;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    .chat-bubble-user {
+      background: linear-gradient(135deg, #D97706, #EA580C);
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(234, 88, 12, 0.25);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#F9F6F0] text-[#1F1A17] antialiased selection:bg-[#FDE68A] selection:text-[#92400E]">
+
+  <!-- ===================================================================== -->
+  <!-- HEADER THANH ĐIỀU HƯỚNG CHÍNH (TOP NAV) - LIGHT THEME                -->
+  <!-- ===================================================================== -->
+  <header class="sticky top-0 z-40 border-b border-[#E6DFD5] bg-[#FFFFFF]/95 backdrop-blur-md px-4 lg:px-8 py-2.5 shadow-xs transition-all h-[58px] flex items-center">
+    <div class="w-full max-w-[1720px] mx-auto flex items-center justify-between gap-4">
+      
+      <!-- LOGO & TIÊU ĐỀ THƯƠNG HIỆU HACKATHON -->
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-[#B45309] to-[#EA580C] flex items-center justify-center shadow-md shadow-amber-700/20 border border-amber-300/40">
+          <i class="fa-solid fa-crown text-white text-base"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-heritage text-base lg:text-lg font-bold tracking-wider text-[#92400E] leading-none">
+              VIỆT PHÚC VHS - TÔN VINH ÁO DÀI VIỆT NAM
+            </h1>
+            <span class="text-[9px] px-2 py-0.5 rounded-full bg-[#FFFBEB] text-[#92400E] font-mono border border-[#FCD34D] uppercase tracking-widest font-bold">
+              Hackathon 2026
+            </span>
+          </div>
+          <p class="text-[10px] text-[#6B635B] hidden sm:block leading-tight mt-0.5">
+            Phối Cổ Phục Chuẩn Gen Z • Đậm Tinh Thần Di Sản • Lưu Ý Chuẩn Mực Văn Hóa
+          </p>
+        </div>
+      </div>
+
+      <!-- BỘ CHUYỂN PHÂN HỆ ĐỘC LẬP (NAVIGATION TOGGLE) & NÚT MỞ LOOKBOOK -->
+      <div class="flex items-center gap-2 lg:gap-3 flex-wrap justify-end">
+        
+        <!-- Tab Chuyển Phân Hệ Nổi Bật Độc Lập -->
+        <div class="flex items-center p-1 bg-[#F5F2EB] rounded-2xl border border-[#E6DFD5] shadow-xs">
+          <button 
+            type="button" 
+            id="navSubsystemBtn_mockup" 
+            onclick="switchSubsystem('mockup')" 
+            class="py-1.5 px-3 lg:px-4 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 bg-white text-[#92400E] shadow-xs active:scale-95 border border-[#E6DFD5]/60"
+          >
+            <span class="text-sm">🎨</span>
+            <span class="font-heritage tracking-wide">PHÒNG THỬ ĐỒ (MOCKUP)</span>
+          </button>
+          
+          <button 
+            type="button" 
+            id="navSubsystemBtn_cards" 
+            onclick="switchSubsystem('cards')" 
+            class="py-1.5 px-3 lg:px-4 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 text-[#6B635B] hover:text-[#92400E] hover:bg-white/60 active:scale-95"
+          >
+            <span class="text-sm">🎴</span>
+            <span class="font-heritage tracking-wide">CẨM NANG & THẺ GỢI Ý MIX-MATCH</span>
+            <span class="text-[9px] px-1.5 py-0.2 rounded-full bg-[#B45309] text-white font-sans font-bold">MỚI</span>
+          </button>
+        </div>
+
+        <!-- Nút Mở Thư Viện Lookbook -->
+        <button 
+          type="button" 
+          onclick="openLookbookModal()"
+          class="relative px-3 py-1.5 rounded-xl bg-[#FFFFFF] hover:bg-[#F5F2EB] border border-[#E6DFD5] hover:border-[#B45309] text-xs font-semibold text-[#1F1A17] flex items-center gap-2 shadow-xs cursor-pointer transition-all active:scale-95 group shrink-0"
+          title="Xem bộ sưu tập phối đồ đã lưu"
+        >
+          <i class="fa-solid fa-bookmark text-[#B45309] group-hover:scale-110 transition-transform"></i>
+          <span class="hidden sm:inline">Lookbook Của Tôi</span>
+          <span id="headerLookbookBadgeCount" class="w-5 h-5 rounded-full bg-[#B45309] text-white text-[10px] font-bold flex items-center justify-center font-mono">
+            0
+          </span>
+        </button>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- NỘI DUNG CHÍNH: 2 PHÂN HỆ ĐỘC LẬP (MOCKUP CANVAS & THƯ VIỆN CẨM NANG)  -->
+  <!-- ===================================================================== -->
+  <main class="w-full max-w-[1720px] mx-auto p-3 lg:p-4 h-[calc(100vh-58px)] overflow-hidden">
+
+    <!-- =================================================================== -->
+    <!-- PHÂN HỆ 1: PHÒNG THỬ ĐỒ (MOCKUP 3 CỘT ĐẶC TRƯNG)                    -->
+    <!-- =================================================================== -->
+    <div id="subsystem_mockup" class="w-full h-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 h-full items-stretch">
+
+      <!-- ================================================================= -->
+      <!-- CỘT TRÁI (COLUMN 1): CONTROLS & BẢNG ĐIỀU KHIỂN PHỐI ĐỒ (3 CỘT)    -->
+      <!-- ================================================================= -->
+      <section class="lg:col-span-4 xl:col-span-3 space-y-3.5 h-full overflow-y-auto pr-1.5 custom-scrollbar">
+
+        <!-- MODULE 1: CHỌN LOẠI CỔ PHỤC (SELECT CLOTHING TYPE) -->
+        <div class="glass-card rounded-2xl p-3.5 space-y-3">
+          <div class="flex items-center justify-between border-b border-[#E6DFD5] pb-2">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-[#B45309] text-white text-xs flex items-center justify-center font-bold">
+                <i class="fa-solid fa-shirt text-[11px]"></i>
+              </span>
+              <h2 class="font-heritage text-xs font-bold text-[#1F1A17] tracking-wide">1. LOẠI TRANG PHỤC (OUTFIT)</h2>
+            </div>
+            <span id="activeOutfitTag" class="text-[10px] px-2 py-0.5 rounded bg-[#FFFBEB] text-[#92400E] font-mono border border-[#FCD34D] font-medium">
+              Nhật Bình
+            </span>
+          </div>
+
+          <!-- 3 Thẻ Trang Phục Chính -->
+          <div class="space-y-2" id="outfitSelectionContainer">
+            <!-- 1. Áo Dài Truyền Thống -->
+            <button 
+              type="button" 
+              onclick="changeCostume('aodai')" 
+              id="costumeBtn_aodai"
+              class="costume-card w-full p-2.5 rounded-xl border text-left transition-all duration-200 bg-[#FFFFFF] border-[#E6DFD5] hover:border-[#C07D1E] hover:bg-[#FAF7F2] cursor-pointer flex items-center justify-between group"
+            >
+              <div class="flex items-center gap-2.5">
+                <span class="text-xl p-1.5 rounded-lg bg-[#F5F2EB] group-hover:bg-[#FFFBEB] transition-colors">🌸</span>
+                <div>
+                  <div class="font-heritage text-xs font-bold text-[#1F1A17] group-hover:text-[#92400E] transition-colors">
+                    Áo Dài Truyền Thống
+                  </div>
+                  <div class="text-[10px] text-[#6B635B]">Ngũ thân tay chẽn, tà buông thướt tha</div>
+                </div>
+              </div>
+              <i class="fa-solid fa-chevron-right text-[10px] text-[#A8A29E] group-hover:text-[#B45309] transition-colors"></i>
+            </button>
+
+            <!-- 2. Áo Tấc Cổ Phục -->
+            <button 
+              type="button" 
+              onclick="changeCostume('aotac')" 
+              id="costumeBtn_aotac"
+              class="costume-card w-full p-2.5 rounded-xl border text-left transition-all duration-200 bg-[#FFFFFF] border-[#E6DFD5] hover:border-[#C07D1E] hover:bg-[#FAF7F2] cursor-pointer flex items-center justify-between group"
+            >
+              <div class="flex items-center gap-2.5">
+                <span class="text-xl p-1.5 rounded-lg bg-[#F5F2EB] group-hover:bg-[#FFFBEB] transition-colors">👘</span>
+                <div>
+                  <div class="font-heritage text-xs font-bold text-[#1F1A17] group-hover:text-[#92400E] transition-colors">
+                    Áo Tấc Cổ Phục
+                  </div>
+                  <div class="text-[10px] text-[#6B635B]">Ngũ thân tay thụng, lễ phục trang trọng</div>
+                </div>
+              </div>
+              <i class="fa-solid fa-chevron-right text-[10px] text-[#A8A29E] group-hover:text-[#B45309] transition-colors"></i>
+            </button>
+
+            <!-- 3. Áo Nhật Bình Cung Đình -->
+            <button 
+              type="button" 
+              onclick="changeCostume('nhatbinh')" 
+              id="costumeBtn_nhatbinh"
+              class="costume-card active-costume w-full p-2.5 rounded-xl border text-left transition-all duration-200 bg-[#FDF8F0] border-[#B45309] shadow-sm cursor-pointer flex items-center justify-between group ring-1 ring-[#B45309]/30"
+            >
+              <div class="flex items-center gap-2.5">
+                <span class="text-xl p-1.5 rounded-lg bg-[#FEF3C7]">👑</span>
+                <div>
+                  <div class="font-heritage text-xs font-bold text-[#1F1A17] group-hover:text-[#92400E] transition-colors">
+                    Áo Nhật Bình
+                  </div>
+                  <div class="text-[10px] text-[#6B635B]">Cổ chữ nhật, thường phục cung đình Huế</div>
+                </div>
+              </div>
+              <i class="fa-solid fa-chevron-right text-[10px] text-[#B45309] transition-colors"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- MODULE 2: BẢNG CHỌN MÀU SẮC & PHỤ KIỆN (COLORS & ACCESSORIES) -->
+        <div class="glass-card rounded-2xl p-3.5 space-y-3.5">
+          <div class="flex items-center justify-between border-b border-[#E6DFD5] pb-2">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-[#B45309] text-white text-xs flex items-center justify-center font-bold">
+                <i class="fa-solid fa-palette text-[11px]"></i>
+              </span>
+              <h2 class="font-heritage text-xs font-bold text-[#1F1A17] tracking-wide">2. PHỐI MÀU & PHỤ KIỆN</h2>
+            </div>
+            <button 
+              type="button" 
+              onclick="swapColors()" 
+              class="text-[10px] px-2 py-0.5 rounded-lg bg-[#F5F2EB] hover:bg-[#EAE5DC] border border-[#E6DFD5] text-[#1F1A17] cursor-pointer transition-colors flex items-center gap-1 shadow-xs"
+              title="Đổi chỗ màu Áo và màu Quần"
+            >
+              <i class="fa-solid fa-arrows-rotate text-[9px] text-[#B45309]"></i>
+              <span>Hoán đổi</span>
+            </button>
+          </div>
+
+          <!-- 1. BẢNG MÀU ÁO -->
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between text-[11px]">
+              <span class="text-[#1F1A17] font-semibold flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full inline-block border border-black/10" style="background-color: var(--shirt-color);"></span>
+                <span>Màu Áo:</span>
+              </span>
+              <span id="shirtColorHexBadge" class="font-mono text-[10px] text-[#B45309] font-bold">#D4AF37</span>
+            </div>
+            <div class="grid grid-cols-6 gap-1" id="shirtColorGrid"></div>
+            <div class="flex items-center justify-between pt-0.5">
+              <label for="shirtColorInput" class="text-[10px] text-[#6B635B] cursor-pointer flex items-center gap-1 hover:text-[#1F1A17]">
+                <i class="fa-solid fa-eye-dropper text-[9px]"></i> Tùy chỉnh màu áo:
+              </label>
+              <input type="color" id="shirtColorInput" value="#D4AF37" oninput="setShirtColor(this.value, 'Tùy chỉnh')" class="w-5 h-5 rounded cursor-pointer bg-transparent border border-[#E6DFD5]">
+            </div>
+          </div>
+
+          <!-- 2. BẢNG MÀU QUẦN -->
+          <div class="space-y-1.5 border-t border-[#E6DFD5] pt-2">
+            <div class="flex items-center justify-between text-[11px]">
+              <span class="text-[#1F1A17] font-semibold flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full inline-block border border-black/10" style="background-color: var(--pant-color);"></span>
+                <span>Màu Quần:</span>
+              </span>
+              <span id="pantColorHexBadge" class="font-mono text-[10px] text-[#B45309] font-bold">#BA181B</span>
+            </div>
+            <div class="grid grid-cols-6 gap-1" id="pantColorGrid"></div>
+            <div class="flex items-center justify-between pt-0.5">
+              <label for="pantColorInput" class="text-[10px] text-[#6B635B] cursor-pointer flex items-center gap-1 hover:text-[#1F1A17]">
+                <i class="fa-solid fa-eye-dropper text-[9px]"></i> Tùy chỉnh màu quần:
+              </label>
+              <input type="color" id="pantColorInput" value="#BA181B" oninput="setPantColor(this.value, 'Tùy chỉnh')" class="w-5 h-5 rounded cursor-pointer bg-transparent border border-[#E6DFD5]">
+            </div>
+          </div>
+
+          <!-- 3. NHÓM CHỌN PHỤ KIỆN ĐI KÈM (ACCESSORIES CHIPS WITH TOGGLE) -->
+          <div class="space-y-2 border-t border-[#E6DFD5] pt-2">
+            <div class="flex items-center justify-between text-[11px] font-semibold text-[#1F1A17]">
+              <div class="flex items-center gap-1.5">
+                <i class="fa-solid fa-wand-magic-sparkles text-[#B45309]"></i>
+                <span>Phụ Kiện Đi Kèm (Toggle):</span>
+              </div>
+              <span id="accessoriesCountBadge" class="text-[9px] px-1.5 py-0.2 rounded-full bg-[#FFFBEB] text-[#92400E] font-mono border border-[#FCD34D]">
+                3 đang chọn
+              </span>
+            </div>
+
+            <!-- Chips Toggle -->
+            <div class="flex flex-wrap gap-1.5" id="accessoriesChipsContainer">
+              <button 
+                type="button" 
+                onclick="toggleAccessory('khan_vanh')" 
+                id="accChip_khan_vanh"
+                class="acc-chip active-acc-chip px-2.5 py-1 rounded-xl text-[10px] font-medium border border-[#B45309] bg-[#FFFBEB] text-[#92400E] flex items-center gap-1.5 cursor-pointer shadow-xs transition-all active:scale-95"
+              >
+                <span>👑</span>
+                <span>Khăn Vành Hoàng Cung</span>
+                <i class="fa-solid fa-check text-[9px]"></i>
+              </button>
+
+              <button 
+                type="button" 
+                onclick="toggleAccessory('kieng_bac')" 
+                id="accChip_kieng_bac"
+                class="acc-chip active-acc-chip px-2.5 py-1 rounded-xl text-[10px] font-medium border border-[#B45309] bg-[#FFFBEB] text-[#92400E] flex items-center gap-1.5 cursor-pointer shadow-xs transition-all active:scale-95"
+              >
+                <span>💍</span>
+                <span>Kiềng Bạc Chạm Trổ</span>
+                <i class="fa-solid fa-check text-[9px]"></i>
+              </button>
+
+              <button 
+                type="button" 
+                onclick="toggleAccessory('quat_lua')" 
+                id="accChip_quat_lua"
+                class="acc-chip px-2.5 py-1 rounded-xl text-[10px] font-medium border border-[#E6DFD5] bg-[#FFFFFF] text-[#6B635B] hover:border-[#B45309] hover:text-[#1F1A17] flex items-center gap-1.5 cursor-pointer shadow-xs transition-all active:scale-95"
+              >
+                <span>🪭</span>
+                <span>Quạt Lụa Tố Nữ</span>
+                <i class="fa-solid fa-plus text-[9px] opacity-40"></i>
+              </button>
+
+              <button 
+                type="button" 
+                onclick="toggleAccessory('tui_gam')" 
+                id="accChip_tui_gam"
+                class="acc-chip active-acc-chip px-2.5 py-1 rounded-xl text-[10px] font-medium border border-[#B45309] bg-[#FFFBEB] text-[#92400E] flex items-center gap-1.5 cursor-pointer shadow-xs transition-all active:scale-95"
+              >
+                <span>👜</span>
+                <span>Túi Gấm Điện Thoại</span>
+                <i class="fa-solid fa-check text-[9px]"></i>
+              </button>
+
+              <button 
+                type="button" 
+                onclick="toggleAccessory('guoc_moc')" 
+                id="accChip_guoc_moc"
+                class="acc-chip px-2.5 py-1 rounded-xl text-[10px] font-medium border border-[#E6DFD5] bg-[#FFFFFF] text-[#6B635B] hover:border-[#B45309] hover:text-[#1F1A17] flex items-center gap-1.5 cursor-pointer shadow-xs transition-all active:scale-95"
+              >
+                <span>🪵</span>
+                <span>Guốc Mộc Cao</span>
+                <i class="fa-solid fa-plus text-[9px] opacity-40"></i>
+              </button>
+            </div>
+
+            <!-- Phản hồi tức thì về sự kết hợp phụ kiện -->
+            <div id="accessoryFeedbackAlert" class="p-2 rounded-xl bg-[#F0FDF4] border border-[#86EFAC] text-[10px] text-[#15803D] flex items-start gap-1.5">
+              <i class="fa-solid fa-circle-check mt-0.5 text-[#16A34A] shrink-0"></i>
+              <span id="accessoryFeedbackText">Phụ kiện ăn khớp hoàn hảo với quy chế cung đình Áo Nhật Bình!</span>
+            </div>
+          </div>
+
+          <!-- 4. BẢNG PHỤ KIỆN LỚP (TÓC, MŨ, TÚI ĐỒ TRÊN MODEL) -->
+          <div class="space-y-2 border-t border-[#E6DFD5] pt-2">
+            <div class="text-[11px] font-semibold text-[#1F1A17] flex items-center gap-1.5">
+              <i class="fa-solid fa-gem text-[#B45309]"></i>
+              <span>Màu sắc phụ kiện trên người:</span>
+            </div>
+
+            <!-- Tóc -->
+            <div class="bg-[#FCFBF9] p-2 rounded-xl border border-[#E6DFD5] flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="text-sm">💇‍♀️</span>
+                <span class="text-[11px] text-[#1F1A17] font-medium">Tóc</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <div class="flex gap-1" id="hairQuickColors"></div>
+                <input type="color" id="hairColorInput" value="#2D2D2D" oninput="setHairColor(this.value, 'Màu Tóc')" class="w-5 h-5 rounded cursor-pointer bg-transparent border border-[#E6DFD5]">
+              </div>
+            </div>
+
+            <!-- Mũ / Mấn -->
+            <div id="hatControlRow" class="bg-[#FCFBF9] p-2 rounded-xl border border-[#E6DFD5] flex items-center justify-between transition-all">
+              <div class="flex items-center gap-2">
+                <span class="text-sm">👑</span>
+                <div>
+                  <div class="text-[11px] text-[#1F1A17] font-medium">Mũ / Mấn</div>
+                  <div id="hatControlStatus" class="text-[9px] text-[#B45309]">Khăn Vành Cung Đình</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <div class="flex gap-1" id="hatQuickColors"></div>
+                <input type="color" id="hatColorInput" value="#EAB308" oninput="setHatColor(this.value, 'Màu Mũ')" class="w-5 h-5 rounded cursor-pointer bg-transparent border border-[#E6DFD5]">
+              </div>
+            </div>
+
+            <!-- Túi đồ -->
+            <div id="bagControlRow" class="bg-[#FCFBF9] p-2 rounded-xl border border-[#E6DFD5] flex items-center justify-between transition-all">
+              <div class="flex items-center gap-2">
+                <span class="text-sm">👜</span>
+                <div>
+                  <div class="text-[11px] text-[#1F1A17] font-medium">Túi Đồ</div>
+                  <div id="bagControlStatus" class="text-[9px] text-[#B45309]">Túi Gấm Hoàng Gia</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <div class="flex gap-1" id="bagQuickColors"></div>
+                <input type="color" id="bagColorInput" value="#B45309" oninput="setBagColor(this.value, 'Màu Túi')" class="w-5 h-5 rounded cursor-pointer bg-transparent border border-[#E6DFD5]">
+              </div>
+            </div>
+
+          </div>
+
+          <!-- NÚT CHUYỂN NHANH SANG THẺ GỢI Ý PHỐI ĐỒ THỰC TẾ -->
+          <div class="pt-1 border-t border-[#E6DFD5]">
+            <button 
+              type="button" 
+              onclick="switchToStylingCardsWithFilter()" 
+              class="w-full py-2 px-3 rounded-xl bg-[#FDF8F0] hover:bg-[#FFFBEB] border border-[#B45309]/30 hover:border-[#B45309] text-[#92400E] text-[11px] font-bold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-xs group"
+            >
+              <span>🎴</span>
+              <span>Xem gợi ý mix đồ thực tế cho set này</span>
+              <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-0.5 transition-transform"></i>
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- CỘT GIỮA (COLUMN 2): KHUNG VIEW MOCKUP 6 LỚP CANVAS (5 CỘT)       -->
+      <!-- ================================================================= -->
+      <section class="lg:col-span-4 xl:col-span-5 flex flex-col items-center justify-between gap-2 h-full overflow-hidden">
+
+        <!-- TIÊU ĐỀ KHUNG MOCKUP (BADGE NHỎ TINH TẾ) -->
+        <div class="w-full max-w-[420px] flex items-center justify-between px-1">
+          <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-white border border-[#E6DFD5] shadow-xs">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span class="text-[10px] font-semibold text-[#1F1A17] uppercase tracking-wider font-heritage">
+              Phòng Thử Đồ Cổ Phục
+            </span>
+          </div>
+          <span class="text-[10px] text-[#6B635B] font-mono px-2 py-0.5 rounded-md bg-[#F5F2EB] border border-[#E6DFD5]">
+            Bản xem trước
+          </span>
+        </div>
+
+        <!-- THẺ KHUNG CHÍNH: <div id="mockup-container"> -->
+        <div 
+          id="mockup-container" 
+          class="relative w-full max-w-[420px] flex-1 min-h-[380px] max-h-[540px] rounded-3xl p-1 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex flex-col items-center justify-center overflow-hidden border border-[#E6DFD5]"
+        >
+          <!-- TIA CHỚP FLASH KHI CHỤP ẢNH -->
+          <div id="shutter-flash" class="absolute inset-0 bg-white pointer-events-none z-50 opacity-0 rounded-3xl transition-opacity duration-300"></div>
+
+          <!-- GÓC NGẮM MÁY ẢNH (CAMERA BRACKETS THUẦN CSS) -->
+          <div class="absolute inset-3 pointer-events-none z-30 flex flex-col justify-between opacity-50">
+            <div class="flex justify-between">
+              <div class="w-4 h-4 border-t-2 border-l-2 border-[#1F1A17] rounded-tl-sm"></div>
+              <div class="w-4 h-4 border-t-2 border-r-2 border-[#1F1A17] rounded-tr-sm"></div>
+            </div>
+            <div class="flex justify-between">
+              <div class="w-4 h-4 border-b-2 border-l-2 border-[#1F1A17] rounded-bl-sm"></div>
+              <div class="w-4 h-4 border-b-2 border-r-2 border-[#1F1A17] rounded-br-sm"></div>
+            </div>
+          </div>
+
+          <!-- KHUNG VIEWFINDER NỘI DUNG 6 LỚP CỔ PHỤC -->
+          <div 
+            id="viewfinder" 
+            class="relative w-full h-full bg-cover bg-center overflow-hidden rounded-[22px] shadow-inner" 
+            style="background-image: url('./HoangThanhThangLong2.jpg');"
+          >
+            <!-- Wrapper chứa cả 6 lớp. Các lệnh transform CSS áp dụng vào đây -->
+            <div 
+              id="model-wrapper" 
+              class="absolute bottom-0 left-[50%] w-full h-[90%] origin-bottom pointer-events-none" 
+              style="transform: translateX(calc(-50% + var(--translate-x, 0px))) scale(var(--final-scale, 0.5));"
+            >
+              <!-- Lớp 1: Sketch (Nét chì & màu da thịt) -->
+              <img id="model-sketch" class="absolute inset-0 w-full h-full object-contain object-bottom z-10" 
+                   src="./ao_nhat_binh_quan_mau_da.png" alt="Sketch">
+              
+              <!-- Lớp 2: Shirt Mask (Áo) -->
+              <div id="shirt-mask-layer" class="absolute inset-0 w-full h-full z-20 pointer-events-none" 
+                   style="-webkit-mask-image: url('./ao_nhat_binh_ao_mask.png'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: bottom center; background-color: var(--shirt-color); mix-blend-mode: multiply;"></div>
+
+              <!-- Lớp 3: Pant Mask (Quần) -->
+              <div id="pant-mask-layer" class="absolute inset-0 w-full h-full z-30 pointer-events-none" 
+                   style="-webkit-mask-image: url('./ao_nhat_binh_quan_mask.jpg'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: bottom center; background-color: var(--pant-color); mix-blend-mode: multiply;"></div>
+
+              <!-- Lớp 4: Hair Mask (Tóc) -->
+              <div id="hair-mask-layer" class="absolute inset-0 w-full h-full z-40 transition-opacity duration-300 pointer-events-none" 
+                   style="-webkit-mask-image: url('./ao_nhat_binh_quan_toc_mask.png'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: bottom center; background-color: var(--hair-color, #2d2d2d); mix-blend-mode: multiply;"></div>
+                   
+              <!-- Lớp 5: Hat/Headwear Mask (Mũ/Mấn) -->
+              <div id="hat-mask-layer" class="absolute inset-0 w-full h-full z-50 transition-opacity duration-300 pointer-events-none" 
+                   style="-webkit-mask-image: url('./ao_nhat_binh_quan_mu_mask.png'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: bottom center; background-color: var(--hat-color, #BA181B); mix-blend-mode: multiply; transform: translate(var(--hat-tx, 0px), var(--hat-ty, 0px)) scale(var(--hat-scale, 1));">
+              </div>
+
+              <!-- Lớp 6: Bag Mask (Túi đồ) -->
+              <div id="bag-mask-layer" class="absolute inset-0 w-full h-full z-60 transition-opacity duration-300 pointer-events-none" 
+                   style="-webkit-mask-image: url('./ao_nhat_binh_quan_tui_do_mask.png'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: bottom center; background-color: var(--bag-color, #b45309); mix-blend-mode: multiply;"></div>
+            </div>
+
+            <!-- THÔNG TIN HUD DƯỚI ĐÁY VIEWFINDER -->
+            <div class="absolute bottom-2.5 left-2.5 right-2.5 z-40 flex items-center justify-between pointer-events-none">
+              <div class="bg-white/90 backdrop-blur-md px-2.5 py-1.5 rounded-lg border border-[#E6DFD5] text-[10px] text-[#1F1A17] font-mono flex items-center gap-1.5 shadow-md flex-wrap">
+                <span id="hudCostumeName" class="font-bold">Nhật Bình</span>
+                <span class="text-[#B45309]">|</span>
+                <span class="flex items-center gap-1" title="Áo">
+                  <span class="w-2 h-2 rounded-full inline-block border border-black/10" style="background-color: var(--shirt-color);"></span>
+                  <span id="hudShirtHex">#D4AF37</span>
+                </span>
+                <span class="text-stone-400">•</span>
+                <span class="flex items-center gap-1" title="Quần">
+                  <span class="w-2 h-2 rounded-full inline-block border border-black/10" style="background-color: var(--pant-color);"></span>
+                  <span id="hudPantHex">#BA181B</span>
+                </span>
+                <span class="text-stone-400">•</span>
+                <span class="flex items-center gap-1" title="Tóc">
+                  <span class="w-2 h-2 rounded-full inline-block border border-black/10" style="background-color: var(--hair-color, #2d2d2d);"></span>
+                  <span id="hudHairHex">#2D2D2D</span>
+                </span>
+              </div>
+
+              <div class="bg-white/90 backdrop-blur-md px-2 py-1.5 rounded-lg border border-[#E6DFD5] text-[10px] text-[#B45309] font-mono font-bold shadow-md">
+                MULTI-LAYER MASK
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- THANH CÔNG CỤ NGANG BO TRÒN (DOCK BAR) -->
+        <div class="w-full max-w-[420px] bg-white/95 backdrop-blur-md border border-[#E6DFD5] rounded-full p-1.5 shadow-lg flex items-center justify-between gap-1.5">
+          <!-- NÚT CHÍNH: LƯU VÀO LOOKBOOK -->
+          <button 
+            type="button" 
+            id="saveLookbookBtn" 
+            onclick="saveToLookbook()"
+            class="flex-1 py-1.5 px-3.5 rounded-full bg-gradient-to-r from-[#D97706] to-[#EA580C] hover:from-[#B45309] hover:to-[#C2410C] text-white font-bold text-xs shadow-md shadow-amber-600/25 cursor-pointer transition-all flex items-center justify-center gap-1.5 active:scale-95 font-heritage"
+          >
+            <i class="fa-solid fa-bookmark text-xs"></i>
+            <span>Lưu Lookbook</span>
+          </button>
+
+          <!-- NÚT CHỤP ẢNH CANVAS PNG -->
+          <button 
+            type="button" 
+            onclick="triggerLookbookCapture()"
+            class="py-1.5 px-3.5 rounded-full bg-[#FFFFFF] hover:bg-[#F5F2EB] border border-[#E6DFD5] hover:border-[#B45309] text-[#1F1A17] font-semibold text-xs shadow-xs cursor-pointer transition-all flex items-center justify-center gap-1.5 active:scale-95"
+            title="Chụp ảnh xuất file PNG độ nét cao"
+          >
+            <i class="fa-solid fa-camera text-xs text-[#B45309]"></i>
+            <span class="hidden sm:inline">Chụp Ảnh</span>
+          </button>
+
+          <!-- NÚT ĐẶT LẠI VỊ TRÍ -->
+          <button 
+            type="button" 
+            onclick="resetModelTransform()"
+            class="w-7 h-7 rounded-full bg-[#FFFFFF] hover:bg-[#F5F2EB] border border-[#E6DFD5] text-[#6B635B] hover:text-[#1F1A17] font-semibold text-xs shadow-xs cursor-pointer transition-all flex items-center justify-center active:scale-95 shrink-0"
+            title="Đặt lại vị trí ban đầu"
+          >
+            <i class="fa-solid fa-rotate-left text-xs"></i>
+          </button>
+        </div>
+
+        <!-- THANH CĂN CHỈNH TỌA ĐỘ & BỐI CẢNH NGOẠI CẢNH -->
+        <div class="w-full max-w-[420px] glass-card rounded-2xl p-2 text-xs space-y-1">
+          <div class="flex items-center justify-between text-[10px] text-[#6B635B]">
+            <span><i class="fa-solid fa-sliders text-[#B45309] mr-1"></i> Căn chỉnh bối cảnh:</span>
+            <div class="flex items-center gap-2">
+              <span id="sliderScaleVal" class="font-mono text-[#B45309] font-bold">1.00x</span>
+              <span>•</span>
+              <span id="sliderTranslateXVal" class="font-mono text-[#B45309] font-bold">0px</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <div class="text-[9px] text-[#6B635B]">Thu phóng (Scale):</div>
+              <input type="range" id="sliderScale" min="0.8" max="1.5" step="0.05" value="1.0" oninput="handleUserScaleInput(this.value)" class="w-full accent-[#B45309] cursor-pointer h-1">
+            </div>
+            <div>
+              <div class="text-[9px] text-[#6B635B]">Dịch chuyển ngang:</div>
+              <input type="range" id="sliderTranslateX" min="-150" max="150" step="5" value="0" oninput="handleUserTranslateXInput(this.value)" class="w-full accent-[#B45309] cursor-pointer h-1">
+            </div>
+          </div>
+
+          <!-- Bối cảnh thực tế -->
+          <div class="flex items-center justify-between pt-1 border-t border-[#E6DFD5] flex-wrap gap-1">
+            <span class="text-[9px] text-[#6B635B] shrink-0">Bối cảnh:</span>
+            <div class="flex gap-1 flex-wrap">
+              <button type="button" onclick="changeScene('./HoangThanhThangLong2.jpg', 'Đoan Môn')" class="px-1.5 py-0.5 rounded text-[9px] bg-[#FFFBEB] hover:bg-[#FEF3C7] text-[#92400E] border border-[#FCD34D] cursor-pointer font-medium shadow-xs">Hoàng Thành</button>
+              <button type="button" onclick="changeScene('./HoGuom1.jpg', 'Hồ Gươm')" class="px-1.5 py-0.5 rounded text-[9px] bg-[#FCFBF9] hover:bg-[#F5F2EB] text-[#1F1A17] border border-[#E6DFD5] cursor-pointer shadow-xs">Hồ Gươm</button>
+              <button type="button" onclick="changeScene('./vanmieu.jpg', 'Văn Miếu')" class="px-1.5 py-0.5 rounded text-[9px] bg-[#FCFBF9] hover:bg-[#F5F2EB] text-[#1F1A17] border border-[#E6DFD5] cursor-pointer shadow-xs">Văn Miếu</button>
+              <button type="button" onclick="changeScene('./phocohoianchuacau.jpg', 'Hội An')" class="px-1.5 py-0.5 rounded text-[9px] bg-[#FCFBF9] hover:bg-[#F5F2EB] text-[#1F1A17] border border-[#E6DFD5] cursor-pointer shadow-xs">Chùa Cầu</button>
+              <button type="button" onclick="changeScene('./songhoaihoian.jpg', 'Sông Hoài')" class="px-1.5 py-0.5 rounded text-[9px] bg-[#FCFBF9] hover:bg-[#F5F2EB] text-[#1F1A17] border border-[#E6DFD5] cursor-pointer shadow-xs">Sông Hoài</button>
+              <button type="button" onclick="changeScene('./damcuoitruyenthong.jpg', 'Hỷ Sự')" class="px-1.5 py-0.5 rounded text-[9px] bg-[#FCFBF9] hover:bg-[#F5F2EB] text-[#1F1A17] border border-[#E6DFD5] cursor-pointer shadow-xs">Đám Cưới</button>
+              <button type="button" onclick="changeScene('./codohue.jpg', 'Cố Đô Huế')" class="px-1.5 py-0.5 rounded text-[9px] bg-[#FCFBF9] hover:bg-[#F5F2EB] text-[#1F1A17] border border-[#E6DFD5] cursor-pointer shadow-xs">Huế</button>
+              <button type="button" onclick="changeScene('./baotangmythuathcm.jpg', 'Bảo Tàng Mỹ Thuật')" class="px-1.5 py-0.5 rounded text-[9px] bg-[#FCFBF9] hover:bg-[#F5F2EB] text-[#1F1A17] border border-[#E6DFD5] cursor-pointer shadow-xs">BT Mỹ Thuật</button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- CỘT PHẢI (COLUMN 3): INFORMATION PANEL & CHATBOT (4.5 CỘT)        -->
+      <!-- ================================================================= -->
+      <section class="lg:col-span-4 xl:col-span-4 space-y-3.5 h-full overflow-y-auto pr-1.5 custom-scrollbar">
+
+        <!-- THƯỚC ĐO HÀI HÒA & TÔN TRỌNG DI SẢN (HARMONY & CULTURE BADGE SCORE WIDGET) -->
+        <div id="harmonyScoreWidget" class="glass-card rounded-2xl p-3.5 space-y-2.5 transition-all duration-300">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span id="harmonyScoreIcon" class="w-7 h-7 rounded-lg bg-[#FEF3C7] text-[#B45309] text-xs flex items-center justify-center font-bold">
+                <i class="fa-solid fa-award text-sm"></i>
+              </span>
+              <div>
+                <h3 class="font-heritage text-xs font-bold text-[#1F1A17] tracking-wide">THƯỚC ĐO TÔN TRỌNG DI SẢN</h3>
+                <div id="harmonyScoreSubtitle" class="text-[10px] text-[#6B635B]">Quy chế & Ngũ hành tương sinh</div>
+              </div>
+            </div>
+            <div class="text-right">
+              <span id="harmonyScoreNum" class="font-mono text-base font-extrabold text-[#15803D]">100%</span>
+              <span class="text-[9px] text-[#15803D] block font-semibold" id="harmonyScoreRating">Chuẩn quy chế</span>
+            </div>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="w-full bg-[#E6DFD5] h-2 rounded-full overflow-hidden">
+            <div id="harmonyProgressBar" class="h-full bg-gradient-to-r from-[#16A34A] to-[#15803D] rounded-full transition-all duration-500" style="width: 100%;"></div>
+          </div>
+
+          <!-- Chi tiết đánh giá 2 dòng -->
+          <div class="space-y-1 pt-1 text-[11px]">
+            <div class="flex items-center justify-between text-[#1F1A17]">
+              <span class="flex items-center gap-1.5 text-[#6B635B]">
+                <i class="fa-solid fa-scroll text-[10px] text-[#B45309]"></i> Độ phù hợp văn hóa:
+              </span>
+              <span id="harmonyCultureStatus" class="font-semibold text-[#15803D]">100% (Chuẩn quy chế)</span>
+            </div>
+            <div class="flex items-center justify-between text-[#1F1A17]">
+              <span class="flex items-center gap-1.5 text-[#6B635B]">
+                <i class="fa-solid fa-yin-yang text-[10px] text-[#B45309]"></i> Phối màu sắc:
+              </span>
+              <span id="harmonyColorStatus" class="font-semibold text-[#B45309]">Ngũ hành tương sinh (Kim - Thổ)</span>
+            </div>
+          </div>
+
+          <!-- Cảnh báo khi có sai lệch quy tắc -->
+          <div id="harmonyAlertBox" class="hidden p-2 rounded-xl bg-[#FEF2F2] border border-[#F87171] text-[10px] text-[#991B1B] flex items-center gap-1.5">
+            <i class="fa-solid fa-triangle-exclamation text-[#DC2626] shrink-0"></i>
+            <span id="harmonyAlertMsg">Phát hiện điểm lệch thời kỳ hoặc màu sắc cần lưu ý!</span>
+          </div>
+        </div>
+
+        <!-- THẺ CHÍNH CHỨA TAB TƯƠNG TÁC -->
+        <div class="glass-card rounded-2xl p-4 space-y-3.5">
+          
+          <!-- THANH CHUYỂN TAB (TAB TOGGLE) -->
+          <div class="flex items-center border-b border-[#E6DFD5] pb-1 gap-2">
+            <!-- TAB 1: KIẾN THỨC & LƯU Ý VĂN HÓA -->
+            <button 
+              type="button" 
+              id="tabBtn_info"
+              onclick="switchRightTab('info')"
+              class="flex-1 pb-2 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer active-tab-glow font-heritage"
+            >
+              <i class="fa-solid fa-scroll text-sm"></i>
+              <span>VĂN HÓA & LƯU Ý</span>
+            </button>
+
+            <!-- TAB 2: TRỢ LÝ STYLIST (GÓC HỎI ĐÁP) -->
+            <button 
+              type="button" 
+              id="tabBtn_chat"
+              onclick="switchRightTab('chat')"
+              class="flex-1 pb-2 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer text-[#6B635B] hover:text-[#B45309] font-heritage"
+            >
+              <i class="fa-solid fa-wand-magic-sparkles text-sm"></i>
+              <span>TRỢ LÝ STYLIST</span>
+            </button>
+          </div>
+
+          <!-- ============================================================= -->
+          <!-- NỘI DUNG TAB 1: CULTURAL INFORMATION & WARNING MODULE         -->
+          <!-- ============================================================= -->
+          <div id="tabContent_info" class="space-y-3.5">
+            
+            <!-- TIÊU ĐỀ TRANG PHỤC & TRIỀU ĐẠI -->
+            <div class="space-y-1">
+              <div class="flex items-center justify-between">
+                <h3 id="culturalOutfitName" class="font-heritage text-sm font-bold text-[#1F1A17]">
+                  Áo Nhật Bình
+                </h3>
+                <span id="culturalDynastyBadge" class="text-[9px] px-2 py-0.5 rounded bg-[#FFFBEB] text-[#92400E] font-mono border border-[#FCD34D] font-medium">
+                  Triều Nguyễn (1802 - 1945)
+                </span>
+              </div>
+              <p id="culturalMeaningText" class="text-xs text-[#6B635B] leading-relaxed">
+                Áo Nhật Bình có dải cổ chữ nhật to bản trước ngực, vạt áo ngũ hành tượng trưng cho Kim - Mộc - Thủy - Hỏa - Thổ. Đây là thường phục cao quý của Hoàng hậu, Công chúa và Phi tần triều Nguyễn.
+              </p>
+            </div>
+
+            <!-- LƯU Ý CHUẨN MỰC DI SẢN -->
+            <div class="space-y-2">
+              <div class="text-[11px] font-bold text-[#B45309] flex items-center gap-1.5 uppercase tracking-wide">
+                <i class="fa-solid fa-shield-halved text-[#D97706]"></i>
+                <span>LƯU Ý CHUẨN MỰC DI SẢN:</span>
+              </div>
+
+              <div id="culturalWarningsContainer" class="space-y-2">
+                <!-- Sẽ được JS render động với các lưu ý di sản -->
+              </div>
+            </div>
+
+            <!-- GỢI Ý MIX & MATCH PHÁ CÁCH -->
+            <div class="bg-[#FDFBF7] p-3 rounded-xl border border-[#E5D9C5] space-y-1 shadow-xs">
+              <div class="text-[11px] font-bold text-[#92400E] flex items-center gap-1.5">
+                <i class="fa-solid fa-wand-magic-sparkles text-[#B45309]"></i>
+                <span>Gợi Ý Mix & Match Phá Cách:</span>
+              </div>
+              <p id="culturalRemixTip" class="text-xs text-[#44403C] leading-relaxed">
+                Phối cùng khăn vành vàng kim, kiềng bạc chạm trổ, cầm quạt xếp thư pháp hoặc máy ảnh vintage; tạo nét sang chảnh hoàng gia mà cực kỳ tôn trọng di sản.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- ============================================================= -->
+          <!-- NỘI DUNG TAB 2: ÁO DÀI EXPERT CHATBOT (INTERACTIVE AI LOGIC)   -->
+          <!-- ============================================================= -->
+          <div id="tabContent_chat" class="space-y-3 hidden">
+            
+            <!-- KHUNG TIN NHẮN CHAT (CHAT STREAM) -->
+            <div 
+              id="chatMessagesContainer" 
+              class="h-[300px] overflow-y-auto space-y-2.5 pr-1 text-xs custom-scrollbar"
+            >
+              <!-- Tin nhắn chào mừng mặc định -->
+              <div class="flex items-start gap-2.5">
+                <div class="w-7 h-7 rounded-full bg-[#B45309] text-white font-bold flex items-center justify-center shrink-0 text-xs shadow-md">
+                  <i class="fa-solid fa-crown text-[10px]"></i>
+                </div>
+                <div class="chat-bubble-bot p-2.5 rounded-2xl rounded-tl-sm text-[#1F1A17] max-w-[85%] leading-relaxed space-y-1">
+                  <div class="font-bold text-[#B45309] text-[11px]">Trợ Lý Stylist (Góc Hỏi Đáp)</div>
+                  <p class="text-[#1F1A17]">Chào bạn! Mình là bạn đồng hành phối đồ và chia sẻ văn hóa cổ phục Việt. Bạn cần tư vấn chọn màu da, cách diện đồ đi lễ trang nhã, hay cách phối phụ kiện hiện đại phá cách? Hãy chọn câu hỏi gợi ý bên dưới hoặc nhắn tin để mình hỗ trợ nhé!</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3 CÂU HỎI GỢI Ý NHANH BÁM SÁT ĐỀ BÀI (PREDEFINED PROMPTS) -->
+            <div class="space-y-1.5 border-t border-[#E6DFD5] pt-2">
+              <div class="text-[10px] text-[#6B635B] font-semibold uppercase tracking-wider flex items-center gap-1">
+                <i class="fa-solid fa-lightbulb text-[#B45309]"></i>
+                <span>Gợi ý câu hỏi nhanh:</span>
+              </div>
+              <div class="flex flex-col gap-1.5">
+                <button 
+                  type="button" 
+                  onclick="handlePromptChip('Da ngăm mặc màu gì tôn dáng?')" 
+                  class="text-[11px] p-2 rounded-xl bg-[#FCFBF9] hover:bg-[#FFFBEB] border border-[#E6DFD5] hover:border-[#B45309] text-[#1F1A17] hover:text-[#92400E] text-left cursor-pointer transition-colors shadow-xs flex items-center justify-between group"
+                >
+                  <span class="flex items-center gap-2">
+                    <span>✨</span>
+                    <span class="font-medium">Da ngăm mặc màu gì tôn dáng?</span>
+                  </span>
+                  <i class="fa-solid fa-arrow-right text-[10px] text-[#A8A29E] group-hover:text-[#B45309]"></i>
+                </button>
+
+                <button 
+                  type="button" 
+                  onclick="handlePromptChip('Đi bê tráp mặc Nhật Bình được không?')" 
+                  class="text-[11px] p-2 rounded-xl bg-[#FCFBF9] hover:bg-[#FFFBEB] border border-[#E6DFD5] hover:border-[#B45309] text-[#1F1A17] hover:text-[#92400E] text-left cursor-pointer transition-colors shadow-xs flex items-center justify-between group"
+                >
+                  <span class="flex items-center gap-2">
+                    <span>💍</span>
+                    <span class="font-medium">Đi bê tráp mặc Nhật Bình được không?</span>
+                  </span>
+                  <i class="fa-solid fa-arrow-right text-[10px] text-[#A8A29E] group-hover:text-[#B45309]"></i>
+                </button>
+
+                <button 
+                  type="button" 
+                  onclick="handlePromptChip('Cách phối áo Tấc phong cách trẻ trung?')" 
+                  class="text-[11px] p-2 rounded-xl bg-[#FCFBF9] hover:bg-[#FFFBEB] border border-[#E6DFD5] hover:border-[#B45309] text-[#1F1A17] hover:text-[#92400E] text-left cursor-pointer transition-colors shadow-xs flex items-center justify-between group"
+                >
+                  <span class="flex items-center gap-2">
+                    <span>👘</span>
+                    <span class="font-medium">Cách phối áo Tấc phong cách trẻ trung?</span>
+                  </span>
+                  <i class="fa-solid fa-arrow-right text-[10px] text-[#A8A29E] group-hover:text-[#B45309]"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Ô NHẬP TIN NHẮN CHAT -->
+            <form onsubmit="handleChatSubmit(event)" class="flex items-center gap-2 pt-1">
+              <input 
+                type="text" 
+                id="chatInput" 
+                placeholder="Nhắn tin với Trợ Lý Stylist về cổ phục..." 
+                class="flex-1 bg-[#FFFFFF] border border-[#E6DFD5] focus:border-[#B45309] rounded-xl px-3 py-2 text-xs text-[#1F1A17] placeholder-[#A8A29E] focus:outline-none transition-colors shadow-xs"
+                autocomplete="off"
+              >
+              <button 
+                type="submit" 
+                class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-[#D97706] to-[#EA580C] hover:from-[#B45309] hover:to-[#C2410C] text-white font-bold text-xs shadow-md cursor-pointer transition-all active:scale-95 flex items-center justify-center"
+                title="Gửi câu hỏi"
+              >
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </form>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+  </div>
+  <!-- /PHÂN HỆ 1: PHÒNG THỬ ĐỒ (MOCKUP) -->
+
+  <!-- =================================================================== -->
+  <!-- PHÂN HỆ 2: CẨM NANG & THẺ GỢI Ý MIX-MATCH (INDEPENDENT RICH GALLERY)  -->
+  <!-- =================================================================== -->
+  <div id="subsystem_cards" class="w-full h-full hidden flex-col overflow-hidden space-y-3">
+    
+    <!-- 1. THANH TIÊU ĐỀ & TÌM KIẾM CẨM NANG -->
+    <div class="glass-card rounded-2xl p-3 lg:p-3.5 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 shrink-0 shadow-xs">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#D97706] to-[#EA580C] text-white flex items-center justify-center font-bold text-base shadow-sm shrink-0">
+          🎴
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h2 class="font-heritage text-sm lg:text-base font-bold text-[#1F1A17] tracking-wide">
+              CẨM NANG & THẺ GỢI Ý MIX-MATCH VIỆT PHỤC
+            </h2>
+            <span class="text-[9px] px-2 py-0.5 rounded-full bg-[#FFFBEB] text-[#92400E] font-bold border border-[#FCD34D] uppercase font-mono">
+              Kho Concept Độc Lập
+            </span>
+          </div>
+          <p class="text-[11px] text-[#6B635B] hidden sm:block">
+            Thư viện cảm hứng phối đồ thực tế: bối cảnh 4 phương, phụ kiện Gen Z, kiểu tóc & mẹo tạo dáng sống ảo.
+          </p>
+        </div>
+      </div>
+
+      <!-- Ô Tìm Kiếm Nhanh & Đếm Kết Quả -->
+      <div class="flex items-center gap-2 w-full md:w-auto">
+        <div class="relative flex-1 md:w-64">
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-[#A8A29E] text-xs"></i>
+          <input 
+            type="text" 
+            id="gallerySearchInput" 
+            oninput="handleGallerySearch(this.value)"
+            placeholder="Tìm theo bối cảnh, áo, phụ kiện..." 
+            class="w-full pl-8 pr-3 py-1.5 rounded-xl bg-white border border-[#E6DFD5] focus:border-[#B45309] text-xs text-[#1F1A17] placeholder-[#A8A29E] focus:outline-none transition-colors shadow-xs"
+          >
+        </div>
+        <span id="galleryCounterBadge" class="text-xs font-mono px-2.5 py-1.5 rounded-xl bg-white border border-[#E6DFD5] text-[#92400E] font-bold whitespace-nowrap shadow-xs">
+          8 concept
+        </span>
+      </div>
+    </div>
+
+    <!-- 2. THANH BỘ LỌC TÌM KIẾM (FILTER BAR) -->
+    <div class="bg-white p-3 rounded-2xl border border-[#E6DFD5] shadow-xs space-y-2.5 shrink-0">
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+        
+        <!-- A. Lọc theo Địa phương -->
+        <div class="space-y-1.5">
+          <div class="text-[11px] font-bold text-[#1F1A17] flex items-center gap-1.5">
+            <i class="fa-solid fa-location-dot text-[#B45309]"></i>
+            <span>Địa phương:</span>
+          </div>
+          <div class="flex items-center gap-1 overflow-x-auto pb-0.5 custom-scrollbar" id="galleryRegionFilters">
+            <button type="button" onclick="handleGalleryFilter('region', 'all')" class="gallery-filter-btn px-2.5 py-1 rounded-xl text-[10px] font-bold bg-[#FFFBEB] text-[#92400E] border border-[#FCD34D] cursor-pointer shadow-xs whitespace-nowrap" data-filter="region" data-val="all">Tất cả</button>
+            <button type="button" onclick="handleGalleryFilter('region', 'hanoi')" class="gallery-filter-btn px-2.5 py-1 rounded-xl text-[10px] font-medium bg-[#FCFBF9] text-[#6B635B] border border-[#E6DFD5] hover:border-[#B45309] cursor-pointer whitespace-nowrap" data-filter="region" data-val="hanoi">📍 Hà Nội</button>
+            <button type="button" onclick="handleGalleryFilter('region', 'hue')" class="gallery-filter-btn px-2.5 py-1 rounded-xl text-[10px] font-medium bg-[#FCFBF9] text-[#6B635B] border border-[#E6DFD5] hover:border-[#B45309] cursor-pointer whitespace-nowrap" data-filter="region" data-val="hue">📍 Huế</button>
+            <button type="button" onclick="handleGalleryFilter('region', 'hoian')" class="gallery-filter-btn px-2.5 py-1 rounded-xl text-[10px] font-medium bg-[#FCFBF9] text-[#6B635B] border border-[#E6DFD5] hover:border-[#B45309] cursor-pointer whitespace-nowrap" data-filter="region" data-val="hoian">📍 Hội An</button>
+            <button type="button" onclick="handleGalleryFilter('region', 'saigon')" class="gallery-filter-btn px-2.5 py-1 rounded-xl text-[10px] font-medium bg-[#FCFBF9] text-[#6B635B] border border-[#E6DFD5] hover:border-[#B45309] cursor-pointer whitespace-nowrap" data-filter="region" data-val="saigon">📍 Sài Gòn</button>
+          </div>
+        </div>
+
+        <!-- B. Lọc theo Dịp / Sự kiện -->
+        <div class="space-y-1.5">
+          <div class="text-[11px] font-bold text-[#1F1A17] flex items-center gap-1.5">
+            <i class="fa-solid fa-calendar-check text-[#B45309]"></i>
+            <span>Dịp & Sự kiện:</span>
+          </div>
+          <div class="flex items-center gap-1 overflow-x-auto pb-0.5 custom-scrollbar" id="galleryEventFilters">
+            <button type="button" onclick="handleGalleryFilter('event', 'all')" class="gallery-filter-btn px-2.5 py-1 rounded-xl text-[10px] font-bold bg-[#FFFBEB] text-[#92400E] border border-[#FCD34D] cursor-pointer shadow-xs whitespace-nowrap" data-filter="event" data-val="all">Tất cả</button>
+            <button type="button" onclick="handleGalleryFilter('event', 'tet')" class="gallery-filter-btn px-2.5 py-1 rounded-xl text-[10px] font-medium bg-[#FCFBF9] text-[#6B635B] border border-[#E6DFD5] hover:border-[#B45309] cursor-pointer whitespace-nowrap" data-filter="event" data-val="tet">🏮 Tết & Lễ hội</button>
+            <button type="button" onclick="handleGalleryFilter('event', 'ky_yeu')" class="gallery-filter-btn px-2.5 py-1 rounded-xl text-[10px] font-medium bg-[#FCFBF9] text-[#6B635B] border border-[#E6DFD5] hover:border-[#B45309] cursor-pointer whitespace-nowrap" data-filter="event" data-val="ky_yeu">🎓 Đi học / Kỷ yếu</button>
+            <button type="button" onclick="handleGalleryFilter('event', 'dam_cuoi')" class="gallery-filter-btn px-2.5 py-1 rounded-xl text-[10px] font-medium bg-[#FCFBF9] text-[#6B635B] border border-[#E6DFD5] hover:border-[#B45309] cursor-pointer whitespace-nowrap" data-filter="event" data-val="dam_cuoi">💍 Cưới hỏi / Bê tráp</button>
+            <button type="button" onclick="handleGalleryFilter('event', 'streetwear')" class="gallery-filter-btn px-2.5 py-1 rounded-xl text-[10px] font-medium bg-[#FCFBF9] text-[#6B635B] border border-[#E6DFD5] hover:border-[#B45309] cursor-pointer whitespace-nowrap" data-filter="event" data-val="streetwear">🚶 Dạo phố</button>
+          </div>
+        </div>
+
+        <!-- C. Lọc theo Phong cách & Đặt lại -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between">
+            <div class="text-[11px] font-bold text-[#1F1A17] flex items-center gap-1.5">
+              <i class="fa-solid fa-wand-magic-sparkles text-[#B45309]"></i>
+              <span>Phong cách:</span>
+            </div>
+            <button 
+              type="button" 
+              onclick="resetGalleryFilters()" 
+              class="text-[10px] text-[#B45309] hover:underline font-semibold cursor-pointer"
+            >
+              <i class="fa-solid fa-rotate-left mr-0.5"></i> Đặt lại
+            </button>
+          </div>
+          <div class="flex items-center gap-1" id="galleryStyleFilters">
+            <button type="button" onclick="handleGalleryFilter('style', 'all')" class="gallery-filter-btn px-2.5 py-1 rounded-xl text-[10px] font-bold bg-[#FFFBEB] text-[#92400E] border border-[#FCD34D] cursor-pointer shadow-xs whitespace-nowrap" data-filter="style" data-val="all">Tất cả</button>
+            <button type="button" onclick="handleGalleryFilter('style', 'traditional')" class="gallery-filter-btn px-2.5 py-1 rounded-xl text-[10px] font-medium bg-[#FCFBF9] text-[#6B635B] border border-[#E6DFD5] hover:border-[#B45309] cursor-pointer whitespace-nowrap" data-filter="style" data-val="traditional">🏛️ Truyền thống</button>
+            <button type="button" onclick="handleGalleryFilter('style', 'genz')" class="gallery-filter-btn px-2.5 py-1 rounded-xl text-[10px] font-medium bg-[#FCFBF9] text-[#6B635B] border border-[#E6DFD5] hover:border-[#B45309] cursor-pointer whitespace-nowrap" data-filter="style" data-val="genz">⚡ Remix Gen Z</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- 3. LƯỚI THẺ GỢI Ý MIX-MATCH (GRID 3-4 CỘT) -->
+    <div id="galleryCardsGrid" class="flex-1 overflow-y-auto custom-scrollbar pr-1 pb-8">
+      <!-- Sẽ được JS render động từ mảng GALLERY_CARDS_DATA -->
+    </div>
+
+  </div>
+  <!-- /PHÂN HỆ 2: CẨM NANG & THẺ GỢI Ý MIX-MATCH -->
+
+</main>
+
+<!-- ===================================================================== -->
+<!-- MODAL XEM CHI TIẾT CONCEPT GỢI Ý (FULL LOOK DETAIL MODAL)             -->
+<!-- ===================================================================== -->
+<div 
+  id="cardDetailModal" 
+  class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs hidden items-center justify-center p-3 lg:p-6 transition-all duration-300"
+>
+  <div class="absolute inset-0" onclick="closeCardDetailModal()"></div>
+  <div class="relative w-full max-w-2xl bg-white rounded-3xl border border-[#E6DFD5] shadow-2xl overflow-hidden flex flex-col max-h-[90vh] z-10 animate-scale-up">
+    <!-- Header Modal -->
+    <div class="p-4 border-b border-[#E6DFD5] flex items-center justify-between bg-[#FCFBF9]">
+      <div class="flex items-center gap-2">
+        <span class="text-lg">🎴</span>
+        <h3 id="modalDetailTitle" class="font-heritage text-base font-bold text-[#1F1A17]">Chi Tiết Concept Phối Đồ</h3>
+      </div>
+      <button 
+        type="button" 
+        onclick="closeCardDetailModal()" 
+        class="w-8 h-8 rounded-full bg-white hover:bg-[#F5F2EB] border border-[#E6DFD5] text-[#6B635B] hover:text-[#1F1A17] flex items-center justify-center text-sm cursor-pointer transition-colors"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Nội dung Modal -->
+    <div id="modalDetailBody" class="p-5 overflow-y-auto space-y-4 custom-scrollbar text-xs">
+      <!-- Dynamic render -->
+    </div>
+
+    <!-- Footer Modal -->
+    <div class="p-3.5 border-t border-[#E6DFD5] bg-[#FCFBF9] flex items-center justify-between gap-3">
+      <button 
+        type="button" 
+        id="modalDetailShareBtn" 
+        class="py-2 px-4 rounded-xl bg-white hover:bg-[#F5F2EB] border border-[#E6DFD5] hover:border-[#B45309] text-[#1F1A17] font-semibold text-xs transition-colors cursor-pointer flex items-center gap-1.5 shadow-xs"
+      >
+        <i class="fa-solid fa-share-nodes text-[#B45309]"></i>
+        <span>Chia Sẻ Concept</span>
+      </button>
+
+      <button 
+        type="button" 
+        id="modalDetailSaveBtn" 
+        class="py-2 px-5 rounded-xl bg-gradient-to-r from-[#D97706] to-[#EA580C] hover:from-[#B45309] hover:to-[#C2410C] text-white font-bold text-xs shadow-md cursor-pointer transition-all active:scale-95 flex items-center gap-1.5"
+      >
+        <i class="fa-solid fa-bookmark text-xs"></i>
+        <span>Lưu Vào Lookbook</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL / SLIDE-OUT DRAWER: "LOOKBOOK CỦA TÔI" (MODULE 3) - LIGHT THEME -->
+  <!-- ===================================================================== -->
+  <div 
+    id="lookbookModal" 
+    class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs hidden transition-all duration-300"
+  >
+    <!-- Backdrop click to close -->
+    <div class="absolute inset-0" onclick="closeLookbookModal()"></div>
+
+    <!-- Drawer panel sliding from right -->
+    <div class="absolute top-0 right-0 bottom-0 w-full max-w-lg bg-[#FFFFFF] border-l border-[#E6DFD5] shadow-2xl p-5 space-y-4 flex flex-col z-10 transition-transform">
+      
+      <!-- Header Lookbook Modal -->
+      <div class="flex items-center justify-between border-b border-[#E6DFD5] pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#B45309] to-[#EA580C] text-white flex items-center justify-center font-bold shadow-sm">
+            <i class="fa-solid fa-book-bookmark"></i>
+          </div>
+          <div>
+            <h3 class="font-heritage text-base font-bold text-[#1F1A17]">
+              LOOKBOOK DI SẢN CỦA TÔI
+            </h3>
+            <p class="text-[11px] text-[#6B635B]">
+              Danh sách bản phối đã lưu • Tải thẻ • So sánh • Chia sẻ
+            </p>
+          </div>
+        </div>
+
+        <button 
+          type="button" 
+          onclick="closeLookbookModal()" 
+          class="w-8 h-8 rounded-full bg-[#F5F2EB] hover:bg-[#EAE5DC] text-[#6B635B] hover:text-[#1F1A17] flex items-center justify-center text-sm cursor-pointer transition-colors"
+          title="Đóng Lookbook"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Quick Actions Bar in Lookbook -->
+      <div class="flex items-center gap-2 bg-[#FCFBF9] p-2 rounded-xl border border-[#E6DFD5]">
+        <button 
+          type="button" 
+          onclick="openCompareModal()" 
+          class="flex-1 py-1.5 px-2 rounded-lg bg-white hover:bg-[#FFFBEB] border border-[#E6DFD5] hover:border-[#B45309] text-[11px] font-semibold text-[#1F1A17] flex items-center justify-center gap-1.5 cursor-pointer transition-all shadow-xs"
+        >
+          <i class="fa-solid fa-code-compare text-[#B45309]"></i>
+          <span>So Sánh 2 Bộ Phối</span>
+        </button>
+        <button 
+          type="button" 
+          onclick="copyShareLookbookLink()" 
+          class="flex-1 py-1.5 px-2 rounded-lg bg-white hover:bg-[#FFFBEB] border border-[#E6DFD5] hover:border-[#B45309] text-[11px] font-semibold text-[#1F1A17] flex items-center justify-center gap-1.5 cursor-pointer transition-all shadow-xs"
+        >
+          <i class="fa-solid fa-share-nodes text-[#B45309]"></i>
+          <span>Sao Chép Link Chia Sẻ</span>
+        </button>
+      </div>
+
+      <!-- Danh sách thẻ Lookbook đã lưu (Scrollable) -->
+      <div id="lookbookItemsContainer" class="flex-1 overflow-y-auto space-y-3 pr-1 custom-scrollbar">
+        <!-- Render động bằng JavaScript -->
+      </div>
+
+      <!-- Footer Lookbook Modal -->
+      <div class="flex items-center justify-between border-t border-[#E6DFD5] pt-3 text-xs">
+        <span id="lookbookTotalText" class="text-[#6B635B] font-mono font-medium">0 bản phối đã lưu</span>
+        <div class="flex items-center gap-2">
+          <button 
+            type="button" 
+            onclick="clearAllLookbooks()" 
+            class="px-3 py-1.5 rounded-xl bg-[#FEE2E2] hover:bg-red-200 border border-red-200 text-red-700 cursor-pointer transition-colors text-xs font-medium"
+          >
+            <i class="fa-regular fa-trash-can mr-1"></i> Xóa tất cả
+          </button>
+          <button 
+            type="button" 
+            onclick="closeLookbookModal()" 
+            class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-[#D97706] to-[#EA580C] hover:from-[#B45309] hover:to-[#C2410C] text-white font-bold cursor-pointer transition-colors text-xs shadow-xs"
+          >
+            Đóng
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL SO SÁNH 2 BỘ PHỐI (COMPARE MODAL) -->
+  <div 
+    id="compareModal" 
+    class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs hidden items-center justify-center p-4 transition-all"
+  >
+    <div class="relative w-full max-w-2xl bg-[#FFFFFF] border border-[#E6DFD5] rounded-3xl shadow-2xl p-5 space-y-4 max-h-[90vh] flex flex-col">
+      <div class="flex items-center justify-between border-b border-[#E6DFD5] pb-2.5">
+        <div class="flex items-center gap-2">
+          <span class="w-7 h-7 rounded-xl bg-[#FEF3C7] text-[#B45309] flex items-center justify-center font-bold">
+            <i class="fa-solid fa-code-compare text-xs"></i>
+          </span>
+          <h3 class="font-heritage text-sm font-bold text-[#1F1A17]">SO SÁNH 2 BẢN PHỐI CỔ PHỤC</h3>
+        </div>
+        <button type="button" onclick="closeCompareModal()" class="w-7 h-7 rounded-full bg-[#F5F2EB] hover:bg-[#EAE5DC] text-[#6B635B] flex items-center justify-center text-xs cursor-pointer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div id="compareContentContainer" class="flex-1 overflow-y-auto space-y-3 custom-scrollbar">
+        <!-- Render động 2 cột so sánh -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TOAST THÔNG BÁO TƯƠNG TÁC NGƯỜI DÙNG - LIGHT THEME                     -->
+  <!-- ===================================================================== -->
+  <div 
+    id="toastNotification" 
+    class="fixed bottom-6 right-6 z-50 bg-[#FFFFFF] border border-[#E6DFD5] text-[#1F1A17] px-4 py-2.5 rounded-2xl shadow-xl transition-all duration-300 opacity-0 pointer-events-none translate-y-3 flex items-center gap-2.5 text-xs font-semibold"
+  >
+    <span class="text-base text-[#B45309]">✨</span>
+    <span id="toastMessage">Đã lưu vào Lookbook thành công!</span>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- JAVASCRIPT LOGIC CHÍNH: 4 MODULES HACKATHON                           -->
+  <!-- ===================================================================== -->
+  <script>
+    // =========================================================================
+    // MODULE 2: CULTURAL INFORMATION & WARNING DATA (JSON MOCK)
+    // =========================================================================
+    const CULTURAL_DATA = {
+      aodai: {
+        id: 'aodai',
+        name: 'Áo Dài Truyền Thống',
+        dynasty: 'Thế kỷ 18 - 20 (Chúa Nguyễn & Tân Thời Lemur)',
+        meaning: 'Bắt nguồn từ áo ngũ thân lập lĩnh thời chúa Nguyễn Phúc Khoát (1744) và cách tân thành áo tân thời Lemur những năm 1930. Năm thân áo tượng trưng cho "tứ thân phụ mẫu" che chở cho đứa con, 5 cúc áo cài mang triết lý Nho gia về "Ngũ Thường": Nhân, Lễ, Nghĩa, Trí, Tín.',
+        suggestedEvents: ['Dịp Tết & Du xuân', 'Lễ tốt nghiệp & Kỷ yếu', 'Lễ cưới & Đám hỏi', 'Dạo phố ngoại cảnh'],
+        warnings: [
+          {
+            type: 'danger',
+            title: 'Lưu ý chất liệu vải và độ kín đáo',
+            content: 'Nên ưu tiên chất liệu có độ dày vừa phải hoặc kèm lớp lót thanh lịch, tránh vải quá mỏng lộ nội y để giữ trọn nét kín đáo, đoan trang của tà Áo Dài.'
+          },
+          {
+            type: 'warning',
+            title: 'Giữ chuẩn mực độ dài và đường xẻ tà',
+            content: 'Nên giữ tà áo dài phủ gối truyền thống và đường xẻ tà vừa chạm cạp quần để tôn dáng thanh thoát mà vẫn giữ đúng tỷ lệ chuẩn của trang phục.'
+          },
+          {
+            type: 'advice',
+            title: 'Gợi Ý Mix & Match Phá Cách',
+            content: 'Mix cùng sneaker trắng đơn giản (Converse, Samba), kính mắt râm vintage hoặc túi cói thủ công để tạo nét năng động mà vẫn cực kỳ thanh lịch!'
+          }
+        ],
+        remixTip: 'Mix cùng sneaker trắng đơn giản hoặc guốc mộc quai nhung; tóc búi lơi hoặc tóc ngắn uốn cụp nhẹ nhàng mang vibe thập niên 30.'
+      },
+      aotac: {
+        id: 'aotac',
+        name: 'Áo Tấc Cổ Phục',
+        dynasty: 'Triều Nguyễn (Thế kỷ 19 - 20)',
+        meaning: 'Áo Tấc là dạng áo ngũ thân tay thụng rộng (khoảng 1 tấc - 40cm), cổ đứng cài khuy bên phải. Đây là lễ phục trang trọng bậc nhất của người Việt xưa dùng trong các đại lễ, tế tự, hôn lễ và yết kiến triều đình từ vua quan tới thường dân.',
+        suggestedEvents: ['Lễ cưới & Dạm ngõ truyền thống', 'Đại lễ di sản & Tế tự', 'Chụp ảnh Lookbook cung đình', 'Sự kiện ngoại giao văn hóa'],
+        warnings: [
+          {
+            type: 'danger',
+            title: 'Kết hợp cùng quần dài ống rộng truyền thống',
+            content: 'Áo Tấc là lễ phục đại lễ tôn nghiêm, chuẩn mực nhất khi diện cùng quần dài chấm gót lụa sa trắng hoặc đen, giúp dáng đi bồng bềnh trang nhã.'
+          },
+          {
+            type: 'warning',
+            title: 'Phong thái buông tay áo ung dung, khiêm nhường',
+            content: 'Tay áo thụng dài mang ý nghĩa khiêm cung. Khi đứng trang nghiêm hoặc chụp ảnh nghi lễ nên chắp hai tay đan nhau trước bụng ("chắp tay cung kính").'
+          },
+          {
+            type: 'advice',
+            title: 'Gợi Ý Mix & Match Phá Cách',
+            content: 'Phối cùng khăn đóng (nam/nữ) chuẩn phom, đeo kính gọng tròn vintage, cầm quạt xếp thư pháp hoặc máy ảnh film cổ điển để có bộ ảnh đậm chất hoài niệm.'
+          }
+        ],
+        remixTip: 'Đi kèm khăn đóng cùng tông hoặc đen tuyền, quạt xếp trúc, túi gấm thêu hoa sen; giày hài vải hoặc guốc mộc mạ sơn then.'
+      },
+      nhatbinh: {
+        id: 'nhatbinh',
+        name: 'Áo Nhật Bình',
+        dynasty: 'Nội cung Triều Nguyễn (1802 - 1945)',
+        meaning: 'Áo Nhật Bình có cổ áo chữ nhật to bản viền hoa văn tinh xảo ghép lại tạo thành hình chữ Nhật trước ngực, vạt áo có dải ngũ hành tượng trưng cho Kim - Mộc - Thủy - Hỏa - Thổ. Đây là thường phục cao quý của Hoàng hậu, Công chúa, Phi tần và mệnh phụ quan viên triều Nguyễn.',
+        suggestedEvents: ['Hôn lễ truyền thống (Áo cô dâu)', 'Lễ hội Festival Huế & Cung đình', 'Bộ ảnh nghệ thuật Hoàng gia', 'Sân khấu biểu diễn di sản'],
+        warnings: [
+          {
+            type: 'danger',
+            title: 'Lưu ý cài cúc gọn gàng, trang nhã để giữ nét tôn nghiêm của cổ phục',
+            content: 'Cổ áo Nhật Bình cố định bằng dải buộc hoặc cúc ngọc tôn nghiêm. Hãy giữ nếp cổ áo phẳng phiu, cài khuy chỉnh chu để tôn vinh sự quý phái của trang phục triều đình.'
+          },
+          {
+            type: 'warning',
+            title: 'Ngôn ngữ của màu sắc truyền thống',
+            content: 'Thời Nguyễn, màu vàng chính sắc dành cho Hoàng Thái hậu/Hoàng hậu, màu đỏ cho Công chúa, màu tím/xanh cho Phi tần. Khi chọn màu hãy am hiểu ý nghĩa để thể hiện sự tinh tế.'
+          },
+          {
+            type: 'advice',
+            title: 'Gợi Ý Mix & Match Phá Cách',
+            content: 'Đội khăn vành vàng kim, phối cùng vòng kiềng bạc chạm trổ, cầm quạt lông vũ cung đình. Có thể phá cách makeup tone cam đất/đỏ nhung sang chảnh kiểu hoàng gia.'
+          }
+        ],
+        remixTip: 'Khăn vành quấn chỉ kim tuyến, kiềng cổ bạc ngũ giác, túi gấm hoàng gia đựng điện thoại/máy ảnh; guốc mộc cao đế sơn then.'
+      }
+    };
+
+    // =========================================================================
+    // DỮ LIỆU TÀI NGUYÊN HÌNH ẢNH MOCKUP (MOCKUP ENGINE CONFIG)
+    // =========================================================================
+    const COSTUMES = {
+      aodai: {
+        id: 'aodai',
+        name: 'Áo Dài Truyền Thống',
+        category: 'Ngũ Thân Tay Chẽn',
+        sketch: './ao_truyen_thong_mau_da.png',
+        shirtMask: './ao_dai_truyen_thong_ao_mask.png',
+        pantMask: './ao_dai_truyen_thong_quan_mask.jpg',
+        hairMask: './ao_truyen_thong_toc_mask.jpg',
+        hatMask: null,
+        bagMask: null,
+        baseScale: 1.1,
+        hatTx: 0,
+        hatTy: 0,
+        hatScale: 1.0,
+        defaultShirtColor: '#BA181B',
+        defaultShirtName: 'Đỏ Điều Son',
+        defaultPantColor: '#FAF7F0',
+        defaultPantName: 'Bạch Tuyết Sa',
+        defaultHairColor: '#2D2D2D',
+        defaultHatColor: '#EAB308',
+        defaultBagColor: '#B45309',
+        hasHat: false,
+        hatTitle: 'Không kèm mấn/mũ',
+        hasBag: false,
+        bagTitle: 'Không kèm túi đồ'
+      },
+      aotac: {
+        id: 'aotac',
+        name: 'Áo Tấc Cổ Phục',
+        category: 'Ngũ Thân Tay Thụng',
+        sketch: './ao_tac_mau_da.png',
+        shirtMask: './ao_tac_ao_mask.png',
+        pantMask: './ao_tac_quan_mask.png',
+        hairMask: './ao_tac_toc_mask.png',
+        hatMask: './ao_tac_mu_mask.png',
+        bagMask: null,
+        baseScale: 1.1,
+        hatTx: 0,
+        hatTy: -2,
+        hatScale: 0.96,
+        defaultShirtColor: '#1D3557',
+        defaultShirtName: 'Lam Tràm Cung Đình',
+        defaultPantColor: '#FAF7F0',
+        defaultPantName: 'Bạch Tuyết Sa',
+        defaultHairColor: '#2D2D2D',
+        defaultHatColor: '#1D3557',
+        defaultBagColor: '#B45309',
+        hasHat: true,
+        hatTitle: 'Khăn Đóng Cổ Phục',
+        hasBag: false,
+        bagTitle: 'Không kèm túi đồ'
+      },
+      nhatbinh: {
+        id: 'nhatbinh',
+        name: 'Áo Nhật Bình',
+        category: 'Thường Phục Cung Đình',
+        sketch: './ao_nhat_binh_quan_mau_da.png',
+        shirtMask: './ao_nhat_binh_ao_mask.png',
+        pantMask: './ao_nhat_binh_quan_mask.jpg',
+        hairMask: './ao_nhat_binh_quan_toc_mask.png',
+        hatMask: './ao_nhat_binh_quan_mu_mask.png',
+        bagMask: './ao_nhat_binh_quan_tui_do_mask.png',
+        baseScale: 0.5,
+        hatTx: -1,
+        hatTy: -53,
+        hatScale: 0.70,
+        defaultShirtColor: '#D4AF37',
+        defaultShirtName: 'Hoàng Kim Cửu Đỉnh',
+        defaultPantColor: '#BA181B',
+        defaultPantName: 'Đỏ Điều Son',
+        defaultHairColor: '#2D2D2D',
+        defaultHatColor: '#EAB308',
+        defaultBagColor: '#B45309',
+        hasHat: true,
+        hatTitle: 'Khăn Vành Cung Đình',
+        hasBag: true,
+        bagTitle: 'Túi Gấm Hoàng Gia'
+      }
+    };
+
+    // Bảng 12 màu di sản
+    const PALETTE_COLORS = [
+      { hex: '#BA181B', name: 'Đỏ Điều Son' },
+      { hex: '#1D3557', name: 'Lam Tràm Cung Đình' },
+      { hex: '#2D6A4F', name: 'Lục Trúc Rừng Sâu' },
+      { hex: '#D4AF37', name: 'Hoàng Kim Cửu Đỉnh' },
+      { hex: '#6A0572', name: 'Tím Hoàng Triều' },
+      { hex: '#B85D3B', name: 'Đất Nung Hỏa Biến' },
+      { hex: '#DB2777', name: 'Hồng Cánh Sen' },
+      { hex: '#EA580C', name: 'Cam Hổ Phách' },
+      { hex: '#0284C7', name: 'Lam Bích Dạ Quang' },
+      { hex: '#FAF7F0', name: 'Bạch Tuyết Sa' },
+      { hex: '#1C1917', name: 'Hắc Sa Mun Tuyền' },
+      { hex: '#4D533C', name: 'Rêu Phong Cổ Tự' }
+    ];
+
+    const QUICK_HAIR_COLORS = ['#1C1917', '#2D2D2D', '#4A3728', '#6F4E37'];
+    const QUICK_HAT_COLORS = ['#EAB308', '#1D3557', '#BA181B', '#FAF7F0'];
+    const QUICK_BAG_COLORS = ['#B45309', '#D4AF37', '#BA181B', '#1D3557'];
+
+    // =========================================================================
+    // APPLICATION STATE
+    // =========================================================================
+    let currentCostumeKey = 'nhatbinh';
+    let currentEventKey = 'tet';
+    let currentEventName = 'Tết Cổ Truyền';
+    let currentShirtColor = '#D4AF37';
+    let currentShirtColorName = 'Hoàng Kim Cửu Đỉnh';
+    let currentPantColor = '#BA181B';
+    let currentPantColorName = 'Đỏ Điều Son';
+    let currentHairColor = '#2D2D2D';
+    let currentHatColor = '#EAB308';
+    let currentBagColor = '#B45309';
+    let currentSceneBg = './HoangThanhThangLong2.jpg';
+    let currentSceneName = 'Đoan Môn';
+    let userScale = 1.0;
+    let userTranslateX = 0;
+
+    // Danh sách phụ kiện đang bật (Accessory chips)
+    let selectedAccessories = ['khan_vanh', 'kieng_bac', 'tui_gam'];
+
+    const ACCESSORY_CONFIGS = {
+      khan_vanh: { name: 'Khăn Vành Hoàng Cung', icon: '👑', costumeAllowed: ['nhatbinh', 'aotac', 'aodai'] },
+      kieng_bac: { name: 'Kiềng Bạc Chạm Trổ', icon: '💍', costumeAllowed: ['nhatbinh', 'aotac', 'aodai'] },
+      quat_lua: { name: 'Quạt Lụa Tố Nữ', icon: '🪭', costumeAllowed: ['nhatbinh', 'aotac', 'aodai'] },
+      tui_gam: { name: 'Túi Gấm Điện Thoại', icon: '👜', costumeAllowed: ['nhatbinh', 'aotac', 'aodai'] },
+      guoc_moc: { name: 'Guốc Mộc Cao', icon: '🪵', costumeAllowed: ['nhatbinh', 'aotac', 'aodai'] }
+    };
+
+    // Sự kiện & Gợi ý trang phục/màu sắc tương ứng
+    const EVENT_CONFIGS = {
+      tet: {
+        name: 'Tết Cổ Truyền',
+        recommendedCostume: 'nhatbinh',
+        recommendedShirt: '#BA181B', // Đỏ son
+        shirtName: 'Đỏ Điều Son',
+        recommendedPant: '#FAF7F0',
+        pantName: 'Bạch Tuyết Sa'
+      },
+      ky_yeu: {
+        name: 'Kỷ Yếu Học Đường',
+        recommendedCostume: 'aodai',
+        recommendedShirt: '#FAF7F0', // Trắng tinh khôi
+        shirtName: 'Bạch Tuyết Sa',
+        recommendedPant: '#1D3557',
+        pantName: 'Lam Tràm Cung Đình'
+      },
+      dam_cuoi: {
+        name: 'Lễ Cưới / Bê Tráp',
+        recommendedCostume: 'aotac',
+        recommendedShirt: '#BA181B', // Đỏ hỷ
+        shirtName: 'Đỏ Điều Son',
+        recommendedPant: '#FAF7F0',
+        pantName: 'Bạch Tuyết Sa'
+      },
+      festival: {
+        name: 'Festival & Di Sản',
+        recommendedCostume: 'nhatbinh',
+        recommendedShirt: '#D4AF37', // Vàng hoàng kim
+        shirtName: 'Hoàng Kim Cửu Đỉnh',
+        recommendedPant: '#BA181B',
+        pantName: 'Đỏ Điều Son'
+      },
+      streetwear: {
+        name: 'Streetwear Dạo Phố',
+        recommendedCostume: 'aodai',
+        recommendedShirt: '#EA580C', // Cam hổ phách phá cách
+        shirtName: 'Cam Hổ Phách',
+        recommendedPant: '#1C1917',
+        pantName: 'Hắc Sa Mun Tuyền'
+      }
+    };
+
+    // Kho lưu trữ Lookbook (LocalStorage)
+    let lookbookList = [];
+
+    // =========================================================================
+    // MODULE 1: GIAO DIỆN & ĐIỀU KHIỂN (UI CONTROLS & EVENT HANDLERS)
+    // =========================================================================
+    function selectEvent(eventKey) {
+      const cfg = EVENT_CONFIGS[eventKey];
+      if (!cfg) return;
+
+      currentEventKey = eventKey;
+      currentEventName = cfg.name;
+
+      // Cập nhật giao diện chips
+      document.querySelectorAll('.event-chip').forEach(btn => {
+        if (btn.getAttribute('data-event') === eventKey) {
+          btn.className = 'event-chip active-event-chip p-2 rounded-xl border text-left transition-all duration-150 bg-[#FDF8F0] border-[#B45309] ring-1 ring-[#B45309]/30 text-xs cursor-pointer flex items-center gap-2 group';
+          const title = btn.querySelector('.font-bold');
+          if (title) title.className = 'font-bold text-[11px] text-[#92400E] truncate';
+        } else {
+          btn.className = 'event-chip p-2 rounded-xl border text-left transition-all duration-150 bg-[#FFFFFF] border-[#E6DFD5] hover:border-[#C07D1E] hover:bg-[#FAF7F2] text-xs cursor-pointer flex items-center gap-2 group';
+          const title = btn.querySelector('.font-bold');
+          if (title) title.className = 'font-bold text-[11px] text-[#1F1A17] group-hover:text-[#92400E] truncate';
+        }
+      });
+
+      const activeTag = document.getElementById('activeEventTag');
+      if (activeTag) activeTag.textContent = cfg.name;
+
+      // Tự động gợi ý loại trang phục và màu sắc phù hợp nhất
+      if (cfg.recommendedCostume && cfg.recommendedCostume !== currentCostumeKey) {
+        changeCostume(cfg.recommendedCostume);
+      }
+      if (cfg.recommendedShirt) {
+        setShirtColor(cfg.recommendedShirt, cfg.shirtName);
+      }
+      if (cfg.recommendedPant) {
+        setPantColor(cfg.recommendedPant, cfg.pantName);
+      }
+
+      evaluateHarmonyScore();
+      showToast(`Đã chọn sự kiện: ${cfg.name} (Tự động gợi ý ${COSTUMES[cfg.recommendedCostume]?.name})`);
+    }
+
+    // Toggle Phụ Kiện Đi Kèm
+    function toggleAccessory(accKey) {
+      const idx = selectedAccessories.indexOf(accKey);
+      if (idx > -1) {
+        selectedAccessories.splice(idx, 1);
+      } else {
+        selectedAccessories.push(accKey);
+      }
+      updateAccessoriesUI();
+      evaluateHarmonyScore();
+    }
+
+    function updateAccessoriesUI() {
+      const countBadge = document.getElementById('accessoriesCountBadge');
+      if (countBadge) countBadge.textContent = `${selectedAccessories.length} đang chọn`;
+
+      ['khan_vanh', 'kieng_bac', 'quat_lua', 'tui_gam', 'guoc_moc'].forEach(key => {
+        const btn = document.getElementById(`accChip_${key}`);
+        if (!btn) return;
+        const isSelected = selectedAccessories.includes(key);
+        const iconCheck = btn.querySelector('i');
+
+        if (isSelected) {
+          btn.className = 'acc-chip active-acc-chip px-2.5 py-1 rounded-xl text-[10px] font-medium border border-[#B45309] bg-[#FFFBEB] text-[#92400E] flex items-center gap-1.5 cursor-pointer shadow-xs transition-all active:scale-95';
+          if (iconCheck) {
+            iconCheck.className = 'fa-solid fa-check text-[9px] text-[#B45309]';
+          }
+        } else {
+          btn.className = 'acc-chip px-2.5 py-1 rounded-xl text-[10px] font-medium border border-[#E6DFD5] bg-[#FFFFFF] text-[#6B635B] hover:border-[#B45309] hover:text-[#1F1A17] flex items-center gap-1.5 cursor-pointer shadow-xs transition-all active:scale-95';
+          if (iconCheck) {
+            iconCheck.className = 'fa-solid fa-plus text-[9px] opacity-40';
+          }
+        }
+      });
+
+      // Phản hồi tức thì về sự kết hợp phụ kiện
+      const alertBox = document.getElementById('accessoryFeedbackAlert');
+      const textEl = document.getElementById('accessoryFeedbackText');
+      if (!alertBox || !textEl) return;
+
+      const costumeName = COSTUMES[currentCostumeKey]?.name || 'Cổ phục';
+      if (selectedAccessories.length === 0) {
+        alertBox.className = 'p-2 rounded-xl bg-[#FFFBEB] border border-[#FCD34D] text-[10px] text-[#92400E] flex items-start gap-1.5';
+        alertBox.innerHTML = '<i class="fa-solid fa-circle-exclamation mt-0.5 text-[#D97706] shrink-0"></i> <span>Chưa chọn phụ kiện. Hãy thêm Khăn Vành hoặc Kiềng Bạc để bộ đồ trọn vẹn hơn.</span>';
+      } else if (currentCostumeKey === 'nhatbinh' && selectedAccessories.includes('khan_vanh') && selectedAccessories.includes('kieng_bac')) {
+        alertBox.className = 'p-2 rounded-xl bg-[#F0FDF4] border border-[#86EFAC] text-[10px] text-[#15803D] flex items-start gap-1.5';
+        alertBox.innerHTML = '<i class="fa-solid fa-circle-check mt-0.5 text-[#16A34A] shrink-0"></i> <span>Tuyệt mỹ! Khăn vành và kiềng bạc tái hiện chuẩn phong thái Hoàng tộc triều Nguyễn.</span>';
+      } else if (currentCostumeKey === 'aotac' && selectedAccessories.includes('guoc_moc')) {
+        alertBox.className = 'p-2 rounded-xl bg-[#F0FDF4] border border-[#86EFAC] text-[10px] text-[#15803D] flex items-start gap-1.5';
+        alertBox.innerHTML = '<i class="fa-solid fa-circle-check mt-0.5 text-[#16A34A] shrink-0"></i> <span>Rất nhã nhặn! Guốc mộc mạ sơn then đi cùng Áo Tấc tạo vẻ cung kính, chuẩn phong vị cổ xưa.</span>';
+      } else {
+        alertBox.className = 'p-2 rounded-xl bg-[#F0FDF4] border border-[#86EFAC] text-[10px] text-[#15803D] flex items-start gap-1.5';
+        alertBox.innerHTML = `<i class="fa-solid fa-circle-check mt-0.5 text-[#16A34A] shrink-0"></i> <span>Phụ kiện phối hợp hài hòa, tôn dáng thanh lịch cho ${costumeName}.</span>`;
+      }
+    }
+
+    // =========================================================================
+    // MODULE 3.1: THƯỚC ĐO HÀI HÒA & TÔN TRỌNG DI SẢN (HARMONY & CULTURE BADGE)
+    // =========================================================================
+    function evaluateHarmonyScore() {
+      let score = 100;
+      let cultureStatus = '100% (Chuẩn quy chế)';
+      let colorStatus = 'Ngũ hành tương sinh';
+      let alertMsg = '';
+
+      const shirtUpper = currentShirtColor.toUpperCase();
+      const pantUpper = currentPantColor.toUpperCase();
+
+      // Kiểm tra quy tắc màu theo triều đại
+      // 1. Áo Nhật Bình: Tránh phối cả áo và quần thuần đen làm mất đi nét trang nhã cung đình
+      if (currentCostumeKey === 'nhatbinh' && shirtUpper === '#1C1917' && pantUpper === '#1C1917') {
+        score -= 20;
+        alertMsg = 'Áo Nhật Bình phối thuần đen toàn bộ có thể làm mất đi nét tươi sáng, trang nhã của di sản.';
+      }
+
+      // 3. Phụ kiện: Áo Nhật Bình đại lễ nếu không có khăn vành hoặc phụ kiện nào
+      if (currentCostumeKey === 'nhatbinh' && selectedAccessories.length === 0) {
+        score -= 15;
+        alertMsg = 'Áo Nhật Bình cung đình cần khăn vành hoặc trâm cài để toát lên phong thái trang trọng.';
+      }
+
+      // 4. Đánh giá ngũ hành màu sắc áo & quần
+      const elementOfColor = (hex) => {
+        if (['#BA181B', '#DB2777', '#EA580C'].includes(hex)) return 'Hỏa';
+        if (['#D4AF37', '#B85D3B'].includes(hex)) return 'Thổ';
+        if (['#FAF7F0'].includes(hex)) return 'Kim';
+        if (['#1D3557', '#0284C7', '#1C1917'].includes(hex)) return 'Thủy';
+        if (['#2D6A4F', '#4D533C'].includes(hex)) return 'Mộc';
+        return 'Bình hòa';
+      };
+
+      const shirtElem = elementOfColor(shirtUpper);
+      const pantElem = elementOfColor(pantUpper);
+
+      if (shirtElem !== 'Bình hòa' && pantElem !== 'Bình hòa') {
+        colorStatus = `Ngũ hành (${shirtElem} - ${pantElem})`;
+      } else {
+        colorStatus = 'Tương phản tao nhã';
+      }
+
+      // Cập nhật DOM
+      const scoreNum = document.getElementById('harmonyScoreNum');
+      const scoreRating = document.getElementById('harmonyScoreRating');
+      const progressBar = document.getElementById('harmonyProgressBar');
+      const cultureStatusEl = document.getElementById('harmonyCultureStatus');
+      const colorStatusEl = document.getElementById('harmonyColorStatus');
+      const alertBox = document.getElementById('harmonyAlertBox');
+      const alertMsgEl = document.getElementById('harmonyAlertMsg');
+      const widget = document.getElementById('harmonyScoreWidget');
+
+      if (score < 80) {
+        cultureStatus = `${score}% (Cần điều chỉnh)`;
+        if (scoreNum) {
+          scoreNum.textContent = `${score}%`;
+          scoreNum.className = 'font-mono text-base font-extrabold text-[#DC2626]';
+        }
+        if (scoreRating) {
+          scoreRating.textContent = 'Cần lưu ý văn hóa';
+          scoreRating.className = 'text-[9px] text-[#DC2626] block font-semibold';
+        }
+        if (progressBar) {
+          progressBar.style.width = `${score}%`;
+          progressBar.className = 'h-full bg-gradient-to-r from-red-500 to-amber-500 rounded-full transition-all duration-500';
+        }
+        if (cultureStatusEl) {
+          cultureStatusEl.textContent = cultureStatus;
+          cultureStatusEl.className = 'font-semibold text-[#DC2626]';
+        }
+        if (alertBox && alertMsgEl) {
+          alertBox.classList.remove('hidden');
+          alertMsgEl.textContent = alertMsg || 'Phát hiện phối đồ có thể gây hiểu lầm hoặc lệch bối cảnh!';
+        }
+        if (widget) {
+          widget.classList.add('shake-alert');
+          setTimeout(() => widget.classList.remove('shake-alert'), 450);
+        }
+      } else {
+        cultureStatus = `${score}% (Chuẩn quy chế)`;
+        if (scoreNum) {
+          scoreNum.textContent = `${score}%`;
+          scoreNum.className = 'font-mono text-base font-extrabold text-[#15803D]';
+        }
+        if (scoreRating) {
+          scoreRating.textContent = 'Chuẩn di sản';
+          scoreRating.className = 'text-[9px] text-[#15803D] block font-semibold';
+        }
+        if (progressBar) {
+          progressBar.style.width = `${score}%`;
+          progressBar.className = 'h-full bg-gradient-to-r from-[#16A34A] to-[#15803D] rounded-full transition-all duration-500';
+        }
+        if (cultureStatusEl) {
+          cultureStatusEl.textContent = cultureStatus;
+          cultureStatusEl.className = 'font-semibold text-[#15803D]';
+        }
+        if (alertBox) {
+          alertBox.classList.add('hidden');
+        }
+      }
+
+      if (colorStatusEl) colorStatusEl.textContent = colorStatus;
+    }
+
+    function changeCostume(costumeKey) {
+      const costume = COSTUMES[costumeKey];
+      if (!costume) return;
+      currentCostumeKey = costumeKey;
+
+      const modelSketch = document.getElementById('model-sketch');
+      const shirtMask = document.getElementById('shirt-mask-layer');
+      const pantMask = document.getElementById('pant-mask-layer');
+      const hairMask = document.getElementById('hair-mask-layer');
+      const hatMask = document.getElementById('hat-mask-layer');
+      const bagMask = document.getElementById('bag-mask-layer');
+
+      // 1. Cập nhật ảnh sketch
+      if (modelSketch) modelSketch.src = costume.sketch;
+
+      // 2. Cập nhật mask áo & quần
+      if (shirtMask) {
+        shirtMask.style.webkitMaskImage = `url('${costume.shirtMask}')`;
+        shirtMask.style.maskImage = `url('${costume.shirtMask}')`;
+      }
+      if (pantMask) {
+        pantMask.style.webkitMaskImage = `url('${costume.pantMask}')`;
+        pantMask.style.maskImage = `url('${costume.pantMask}')`;
+      }
+
+      // 3. Cập nhật mask tóc
+      if (hairMask) {
+        if (costume.hairMask) {
+          hairMask.style.display = 'block';
+          hairMask.style.webkitMaskImage = `url('${costume.hairMask}')`;
+          hairMask.style.maskImage = `url('${costume.hairMask}')`;
+          hairMask.style.opacity = '1';
+        } else {
+          hairMask.style.webkitMaskImage = 'none';
+          hairMask.style.maskImage = 'none';
+          hairMask.style.opacity = '0';
+        }
+      }
+
+      // 4. Cập nhật mask mũ/mấn (Vị trí cố định gắn liền với nhân vật)
+      const hatControlRow = document.getElementById('hatControlRow');
+      const hatControlStatus = document.getElementById('hatControlStatus');
+      if (hatMask) {
+        if (costume.hatMask) {
+          hatMask.style.display = 'block';
+          hatMask.style.webkitMaskImage = `url('${costume.hatMask}')`;
+          hatMask.style.maskImage = `url('${costume.hatMask}')`;
+          hatMask.style.opacity = '1';
+          if (hatControlRow) hatControlRow.classList.remove('opacity-40', 'pointer-events-none');
+          if (hatControlStatus) {
+            hatControlStatus.textContent = costume.hatTitle;
+            hatControlStatus.className = 'text-[9px] text-[#B45309] font-medium';
+          }
+          applyHatTransform();
+        } else {
+          hatMask.style.webkitMaskImage = 'none';
+          hatMask.style.maskImage = 'none';
+          hatMask.style.opacity = '0';
+          if (hatControlRow) hatControlRow.classList.add('opacity-40', 'pointer-events-none');
+          if (hatControlStatus) {
+            hatControlStatus.textContent = costume.hatTitle;
+            hatControlStatus.className = 'text-[9px] text-[#A8A29E] italic';
+          }
+        }
+      }
+
+      // 5. Cập nhật mask túi đồ
+      const bagControlRow = document.getElementById('bagControlRow');
+      const bagControlStatus = document.getElementById('bagControlStatus');
+      if (bagMask) {
+        if (costume.bagMask) {
+          bagMask.style.display = 'block';
+          bagMask.style.webkitMaskImage = `url('${costume.bagMask}')`;
+          bagMask.style.maskImage = `url('${costume.bagMask}')`;
+          bagMask.style.opacity = '1';
+          if (bagControlRow) bagControlRow.classList.remove('opacity-40', 'pointer-events-none');
+          if (bagControlStatus) {
+            bagControlStatus.textContent = costume.bagTitle;
+            bagControlStatus.className = 'text-[9px] text-[#B45309] font-medium';
+          }
+        } else {
+          bagMask.style.webkitMaskImage = 'none';
+          bagMask.style.maskImage = 'none';
+          bagMask.style.opacity = '0';
+          if (bagControlRow) bagControlRow.classList.add('opacity-40', 'pointer-events-none');
+          if (bagControlStatus) {
+            bagControlStatus.textContent = costume.bagTitle;
+            bagControlStatus.className = 'text-[9px] text-[#A8A29E] italic';
+          }
+        }
+      }
+
+      // Cập nhật tỷ lệ chuẩn
+      applyModelTransform();
+
+      // Cập nhật UI nút chọn
+      updateCostumeCardsUI();
+      // MODULE 2: Cập nhật nội dung văn hóa & cảnh báo bên cột phải
+      updateCulturalInfoPanel();
+      // Cập nhật HUD
+      updateHud();
+      // MODULE 3: Đánh giá điểm hài hòa & tôn trọng di sản
+      if (typeof evaluateHarmonyScore === 'function') evaluateHarmonyScore();
+      if (typeof updateAccessoriesUI === 'function') updateAccessoriesUI();
+
+      showToast(`Đã chọn: ${costume.name}`);
+    }
+
+    function updateCostumeCardsUI() {
+      ['aodai', 'aotac', 'nhatbinh'].forEach(key => {
+        const btn = document.getElementById(`costumeBtn_${key}`);
+        if (!btn) return;
+        if (key === currentCostumeKey) {
+          btn.className = 'costume-card active-costume w-full p-3 rounded-2xl border text-left transition-all duration-200 bg-[#FDF8F0] border-[#B45309] shadow-md cursor-pointer flex items-center justify-between group ring-1 ring-[#B45309]/30';
+        } else {
+          btn.className = 'costume-card w-full p-3 rounded-2xl border text-left transition-all duration-200 bg-[#FFFFFF] border-[#E6DFD5] hover:border-[#C07D1E] hover:bg-[#FAF7F2] cursor-pointer flex items-center justify-between group';
+        }
+      });
+
+      const badge = document.getElementById('activeOutfitTag');
+      if (badge && COSTUMES[currentCostumeKey]) {
+        badge.textContent = COSTUMES[currentCostumeKey].name;
+      }
+    }
+
+    // =========================================================================
+    // COLOR & ACCESSORY HANDLERS
+    // =========================================================================
+    function setShirtColor(hex, name) {
+      currentShirtColor = hex;
+      currentShirtColorName = name || hex;
+      document.documentElement.style.setProperty('--shirt-color', hex);
+
+      const colorInput = document.getElementById('shirtColorInput');
+      if (colorInput) colorInput.value = hex;
+
+      const hexBadge = document.getElementById('shirtColorHexBadge');
+      if (hexBadge) hexBadge.textContent = hex;
+
+      updateColorGridUI('shirtColorGrid', hex);
+      updateHud();
+      if (typeof evaluateHarmonyScore === 'function') evaluateHarmonyScore();
+    }
+
+    function setPantColor(hex, name) {
+      currentPantColor = hex;
+      currentPantColorName = name || hex;
+      document.documentElement.style.setProperty('--pant-color', hex);
+
+      const colorInput = document.getElementById('pantColorInput');
+      if (colorInput) colorInput.value = hex;
+
+      const hexBadge = document.getElementById('pantColorHexBadge');
+      if (hexBadge) hexBadge.textContent = hex;
+
+      updateColorGridUI('pantColorGrid', hex);
+      updateHud();
+      if (typeof evaluateHarmonyScore === 'function') evaluateHarmonyScore();
+    }
+
+    function setHairColor(hex, name) {
+      currentHairColor = hex;
+      document.documentElement.style.setProperty('--hair-color', hex);
+      const colorInput = document.getElementById('hairColorInput');
+      if (colorInput) colorInput.value = hex;
+      updateHud();
+    }
+
+    function setHatColor(hex, name) {
+      currentHatColor = hex;
+      document.documentElement.style.setProperty('--hat-color', hex);
+      const colorInput = document.getElementById('hatColorInput');
+      if (colorInput) colorInput.value = hex;
+    }
+
+    function setBagColor(hex, name) {
+      currentBagColor = hex;
+      document.documentElement.style.setProperty('--bag-color', hex);
+      const colorInput = document.getElementById('bagColorInput');
+      if (colorInput) colorInput.value = hex;
+    }
+
+    function swapColors() {
+      const tempHex = currentShirtColor;
+      const tempName = currentShirtColorName;
+      setShirtColor(currentPantColor, currentPantColorName);
+      setPantColor(tempHex, tempName);
+      showToast('Đã hoán đổi màu Áo và Quần!');
+    }
+
+    function updateColorGridUI(gridId, activeHex) {
+      const grid = document.getElementById(gridId);
+      if (!grid) return;
+      const buttons = grid.querySelectorAll('button');
+      buttons.forEach(btn => {
+        const hex = btn.getAttribute('title').match(/#[A-Fa-f0-9]{6}/);
+        if (hex && hex[0].toLowerCase() === activeHex.toLowerCase()) {
+          btn.className = 'w-full aspect-square rounded-lg transition-all duration-150 cursor-pointer border-2 border-white scale-110 shadow-md ring-2 ring-[#1F1A17]';
+        } else {
+          btn.className = 'w-full aspect-square rounded-lg transition-all duration-150 cursor-pointer border border-[#E6DFD5] hover:scale-105 shadow-xs';
+        }
+      });
+    }
+
+    function updateHud() {
+      const costume = COSTUMES[currentCostumeKey];
+      if (!costume) return;
+
+      const hudCostume = document.getElementById('hudCostumeName');
+      if (hudCostume) hudCostume.textContent = costume.name;
+
+      const hudShirt = document.getElementById('hudShirtHex');
+      if (hudShirt) hudShirt.textContent = currentShirtColor;
+
+      const hudPant = document.getElementById('hudPantHex');
+      if (hudPant) hudPant.textContent = currentPantColor;
+
+      const hudHair = document.getElementById('hudHairHex');
+      if (hudHair) hudHair.textContent = currentHairColor;
+    }
+
+    function applyModelTransform() {
+      const costume = COSTUMES[currentCostumeKey] || { baseScale: 1.0 };
+      const baseScale = costume.baseScale || 1.0;
+      const finalScale = Number((baseScale * userScale).toFixed(3));
+
+      const wrapper = document.getElementById('model-wrapper');
+      if (wrapper) {
+        wrapper.style.setProperty('--final-scale', finalScale);
+        wrapper.style.setProperty('--translate-x', `${userTranslateX}px`);
+      }
+
+      const scaleVal = document.getElementById('sliderScaleVal');
+      if (scaleVal) scaleVal.textContent = `${userScale.toFixed(2)}x`;
+
+      const transVal = document.getElementById('sliderTranslateXVal');
+      if (transVal) transVal.textContent = `${userTranslateX > 0 ? '+' : ''}${userTranslateX}px`;
+    }
+
+    function handleUserScaleInput(val) {
+      userScale = parseFloat(val);
+      applyModelTransform();
+    }
+
+    function handleUserTranslateXInput(val) {
+      userTranslateX = parseInt(val, 10);
+      applyModelTransform();
+    }
+
+    function resetModelTransform() {
+      userScale = 1.0;
+      userTranslateX = 0;
+      const s = document.getElementById('sliderScale');
+      if (s) s.value = '1.0';
+      const t = document.getElementById('sliderTranslateX');
+      if (t) t.value = '0';
+      applyModelTransform();
+      showToast('Đã đặt lại vị trí!');
+    }
+
+    // =========================================================================
+    // VỊ TRÍ CỐ ĐỊNH CỦA MŨ / MẤN GẮN LIỀN VỚI NHÂN VẬT (LOCKED UNIFIED OBJECT)
+    // =========================================================================
+    function applyHatTransform() {
+      const costume = COSTUMES[currentCostumeKey];
+      if (!costume) return;
+      const tx = costume.hatTx !== undefined ? costume.hatTx : 0;
+      const ty = costume.hatTy !== undefined ? costume.hatTy : 0;
+      const scale = costume.hatScale !== undefined ? costume.hatScale : 1.0;
+
+      const hatLayer = document.getElementById('hat-mask-layer');
+      if (hatLayer) {
+        hatLayer.style.setProperty('--hat-tx', `${tx}px`);
+        hatLayer.style.setProperty('--hat-ty', `${ty}px`);
+        hatLayer.style.setProperty('--hat-scale', scale);
+      }
+    }
+
+    function changeScene(bgUrl, sceneName) {
+      currentSceneBg = bgUrl;
+      currentSceneName = sceneName;
+      const vf = document.getElementById('viewfinder');
+      if (vf) vf.style.backgroundImage = `url('${bgUrl}')`;
+      showToast(`Bối cảnh: ${sceneName}`);
+    }
+
+    // =========================================================================
+    // MODULE 2: CẬP NHẬT CULTURAL INFORMATION & WARNING UI
+    // =========================================================================
+    function updateCulturalInfoPanel() {
+      const info = CULTURAL_DATA[currentCostumeKey];
+      if (!info) return;
+
+      const nameEl = document.getElementById('culturalOutfitName');
+      if (nameEl) nameEl.textContent = info.name;
+
+      const dynastyEl = document.getElementById('culturalDynastyBadge');
+      if (dynastyEl) dynastyEl.textContent = info.dynasty;
+
+      const meaningEl = document.getElementById('culturalMeaningText');
+      if (meaningEl) meaningEl.textContent = info.meaning;
+
+      const tipEl = document.getElementById('culturalRemixTip');
+      if (tipEl) tipEl.textContent = info.remixTip;
+
+      // Render Suggested Events Chips
+      const eventsContainer = document.getElementById('culturalSuggestedEventsChips');
+      if (eventsContainer) {
+        eventsContainer.innerHTML = '';
+        info.suggestedEvents.forEach(evt => {
+          const chip = document.createElement('span');
+          chip.className = 'text-[10px] px-2.5 py-1 rounded-full bg-[#FCFBF9] text-[#1F1A17] border border-[#E6DFD5] font-medium flex items-center gap-1 shadow-xs';
+          chip.innerHTML = `<i class="fa-solid fa-check text-[9px] text-[#15803D]"></i> ${evt}`;
+          eventsContainer.appendChild(chip);
+        });
+      }
+
+      // Render Warnings Container
+      const warningsContainer = document.getElementById('culturalWarningsContainer');
+      if (warningsContainer) {
+        warningsContainer.innerHTML = '';
+        info.warnings.forEach(w => {
+          const item = document.createElement('div');
+          if (w.type === 'danger') {
+            item.className = 'p-3 rounded-2xl bg-[#FFFBEB] border border-[#FCD34D] text-xs text-[#92400E] space-y-0.5 shadow-xs';
+            item.innerHTML = `
+              <div class="font-bold text-[#92400E] flex items-center gap-1.5 text-[11px]">
+                <i class="fa-solid fa-gem text-[#D97706]"></i>
+                <span>${w.title}</span>
+              </div>
+              <p class="text-[10px] text-[#92400E]/90 leading-relaxed font-normal">${w.content}</p>
+            `;
+          } else if (w.type === 'warning') {
+            item.className = 'p-3 rounded-2xl bg-[#FFFDF5] border border-[#FDE68A] text-xs text-[#92400E] space-y-0.5 shadow-xs';
+            item.innerHTML = `
+              <div class="font-bold text-[#92400E] flex items-center gap-1.5 text-[11px]">
+                <i class="fa-solid fa-scroll text-[#D97706]"></i>
+                <span>${w.title}</span>
+              </div>
+              <p class="text-[10px] text-[#92400E]/90 leading-relaxed font-normal">${w.content}</p>
+            `;
+          } else {
+            item.className = 'p-3 rounded-2xl bg-[#EFF6FF] border border-[#93C5FD] text-xs text-[#1E40AF] space-y-0.5 shadow-xs';
+            item.innerHTML = `
+              <div class="font-bold text-[#1E40AF] flex items-center gap-1.5 text-[11px]">
+                <i class="fa-solid fa-lightbulb text-[#2563EB]"></i>
+                <span>${w.title}</span>
+              </div>
+              <p class="text-[10px] text-[#1E40AF]/90 leading-relaxed font-normal">${w.content}</p>
+            `;
+          }
+          warningsContainer.appendChild(item);
+        });
+      }
+    }
+
+    // =========================================================================
+    // MODULE 3: LOOKBOOK FEATURE (SAVE, VIEW, RE-APPLY, DELETE)
+    // =========================================================================
+    function saveToLookbook() {
+      const costume = COSTUMES[currentCostumeKey];
+      const lookItem = {
+        id: 'look_' + Date.now(),
+        costumeKey: currentCostumeKey,
+        costumeName: costume.name,
+        eventKey: currentEventKey,
+        eventName: currentEventName,
+        shirtColor: currentShirtColor,
+        shirtColorName: currentShirtColorName,
+        pantColor: currentPantColor,
+        pantColorName: currentPantColorName,
+        hairColor: currentHairColor,
+        hatColor: currentHatColor,
+        bagColor: currentBagColor,
+        sceneBg: currentSceneBg,
+        sceneName: currentSceneName,
+        savedAt: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }) + ' ' + new Date().toLocaleDateString('vi-VN')
+      };
+
+      lookbookList.unshift(lookItem);
+      try {
+        localStorage.setItem('vietphuc_lookbook', JSON.stringify(lookbookList));
+      } catch (e) {
+        console.warn('LocalStorage save failed:', e);
+      }
+
+      updateLookbookUI();
+      showToast('✨ Đã lưu bộ phối vào Lookbook thành công!');
+    }
+
+    function updateLookbookUI() {
+      const headerCount = document.getElementById('headerLookbookBadgeCount');
+      if (headerCount) headerCount.textContent = lookbookList.length;
+
+      const totalText = document.getElementById('lookbookTotalText');
+      if (totalText) totalText.textContent = `${lookbookList.length} bản phối đã lưu`;
+
+      const container = document.getElementById('lookbookItemsContainer');
+      if (!container) return;
+
+      if (lookbookList.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 text-[#6B635B] space-y-2">
+            <i class="fa-regular fa-folder-open text-4xl text-[#D6CEBE]"></i>
+            <p class="text-xs text-[#1F1A17] font-medium">Chưa có bản phối nào trong Lookbook.</p>
+            <p class="text-[10px] text-[#6B635B]">Bấm nút "Lưu Lookbook" ở thanh công cụ Mockup để lưu lại phong cách của bạn!</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = '';
+      lookbookList.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'p-3.5 rounded-2xl bg-[#FCFBF9] border border-[#E6DFD5] hover:border-[#B45309]/50 shadow-xs flex flex-col gap-2.5 transition-all';
+        card.innerHTML = `
+          <div class="flex items-center justify-between gap-3 min-w-0">
+            <div class="flex items-center gap-3 min-w-0">
+              <!-- Icon & Colors Preview -->
+              <div class="w-11 h-11 rounded-xl bg-[#F5F2EB] border border-[#E6DFD5] flex flex-col items-center justify-center p-1 relative shrink-0">
+                <span class="text-base">${item.costumeKey === 'nhatbinh' ? '👑' : item.costumeKey === 'aotac' ? '👘' : '🌸'}</span>
+                <div class="flex gap-1 mt-0.5">
+                  <span class="w-2.5 h-2.5 rounded-full border border-black/10 shadow-xs" style="background-color: ${item.shirtColor}"></span>
+                  <span class="w-2.5 h-2.5 rounded-full border border-black/10 shadow-xs" style="background-color: ${item.pantColor}"></span>
+                </div>
+              </div>
+
+              <!-- Details -->
+              <div class="min-w-0">
+                <div class="flex items-center gap-2">
+                  <span class="font-heritage text-xs font-bold text-[#1F1A17] truncate">${item.costumeName}</span>
+                  <span class="text-[9px] px-1.5 py-0.2 rounded bg-[#FFFBEB] text-[#92400E] font-mono border border-[#FCD34D]/40 shrink-0 font-semibold">Cổ Phục Việt</span>
+                </div>
+                <div class="text-[10px] text-[#6B635B] truncate mt-0.5">
+                  Áo: <span class="font-mono text-[#B45309] font-semibold">${item.shirtColor}</span> • Quần: <span class="font-mono text-[#B45309] font-semibold">${item.pantColor}</span>
+                </div>
+                <div class="text-[9px] text-[#A8A29E] font-mono mt-0.5">
+                  Lưu lúc: ${item.savedAt}
+                </div>
+              </div>
+            </div>
+
+            <!-- Delete -->
+            <button 
+              type="button" 
+              onclick="deleteLookbookItem('${item.id}')"
+              class="w-7 h-7 rounded-xl bg-[#FEE2E2] hover:bg-red-200 border border-red-200 text-red-600 flex items-center justify-center text-xs transition-colors cursor-pointer shrink-0"
+              title="Xóa bản phối"
+            >
+              <i class="fa-solid fa-trash-can text-[10px]"></i>
+            </button>
+          </div>
+
+          <!-- Bottom Action Buttons: Tải ảnh thẻ Lookbook, Áp dụng, Chia sẻ -->
+          <div class="flex items-center gap-1.5 pt-1.5 border-t border-[#E6DFD5]/70 text-xs">
+            <button 
+              type="button" 
+              onclick="applyLookbookItem('${item.id}')"
+              class="flex-1 py-1 px-2 rounded-lg bg-[#F5F2EB] hover:bg-[#B45309] border border-[#E6DFD5] hover:border-[#B45309] text-[#1F1A17] hover:text-white font-medium text-[10px] transition-colors cursor-pointer shadow-xs text-center"
+            >
+              <i class="fa-solid fa-wand-magic mr-1"></i> Áp dụng
+            </button>
+            <button 
+              type="button" 
+              onclick="downloadLookbookCard('${item.id}')"
+              class="flex-1 py-1 px-2 rounded-lg bg-white hover:bg-[#FFFBEB] border border-[#E6DFD5] hover:border-[#B45309] text-[#92400E] font-medium text-[10px] transition-colors cursor-pointer shadow-xs text-center"
+            >
+              <i class="fa-solid fa-download mr-1"></i> Tải ảnh thẻ
+            </button>
+            <button 
+              type="button" 
+              onclick="copySingleLookbookShare('${item.id}')"
+              class="py-1 px-2 rounded-lg bg-white hover:bg-[#FFFBEB] border border-[#E6DFD5] text-[#6B635B] hover:text-[#B45309] text-[10px] transition-colors cursor-pointer shadow-xs"
+              title="Chia sẻ bản phối này"
+            >
+              <i class="fa-solid fa-share-nodes"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Tải ảnh thẻ Lookbook cá nhân (Download Card)
+    function downloadLookbookCard(id) {
+      const item = lookbookList.find(i => i.id === id);
+      if (!item) return;
+
+      const cardCanvas = document.createElement('canvas');
+      cardCanvas.width = 600;
+      cardCanvas.height = 800;
+      const ctx = cardCanvas.getContext('2d');
+
+      // Nền ấm hoàng gia
+      const grad = ctx.createLinearGradient(0, 0, 0, 800);
+      grad.addColorStop(0, '#FFFDF9');
+      grad.addColorStop(1, '#F5EDE0');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 600, 800);
+
+      // Viền kép phong cách thẻ bài di sản
+      ctx.strokeStyle = '#B45309';
+      ctx.lineWidth = 6;
+      ctx.strokeRect(20, 20, 560, 760);
+      ctx.strokeStyle = '#E6DFD5';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(28, 28, 544, 744);
+
+      // Header
+      ctx.fillStyle = '#B45309';
+      ctx.font = 'bold 24px Cinzel, serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('việt phục vhs • LOOKBOOK THẺ', 300, 80);
+
+      ctx.fillStyle = '#1F1A17';
+      ctx.font = 'bold 28px Playfair Display, serif';
+      ctx.fillText(item.costumeName, 300, 130);
+
+      ctx.fillStyle = '#92400E';
+      ctx.font = '14px Plus Jakarta Sans, sans-serif';
+      ctx.fillText(`Dịp phối đồ: ${item.eventName} • Bối cảnh: ${item.sceneName}`, 300, 160);
+
+      // Ô xem trước màu sắc lớn
+      ctx.fillStyle = '#FFFFFF';
+      ctx.beginPath();
+      ctx.roundRect(80, 200, 440, 220, 16);
+      ctx.fill();
+      ctx.strokeStyle = '#E6DFD5';
+      ctx.stroke();
+
+      // Vòng tròn màu áo
+      ctx.fillStyle = item.shirtColor;
+      ctx.beginPath();
+      ctx.arc(200, 290, 55, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(0,0,0,0.15)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Vòng tròn màu quần
+      ctx.fillStyle = item.pantColor;
+      ctx.beginPath();
+      ctx.arc(400, 290, 55, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = '#1F1A17';
+      ctx.font = 'bold 13px Plus Jakarta Sans, sans-serif';
+      ctx.fillText(`ÁO: ${item.shirtColor}`, 200, 375);
+      ctx.fillText(`QUẦN: ${item.pantColor}`, 400, 375);
+
+      // Thông tin chi tiết
+      ctx.textAlign = 'left';
+      ctx.font = '14px Plus Jakarta Sans, sans-serif';
+      ctx.fillStyle = '#44403C';
+      ctx.fillText(`• Sắc áo: ${item.shirtColorName}`, 90, 470);
+      ctx.fillText(`• Sắc quần: ${item.pantColorName}`, 90, 505);
+      ctx.fillText(`• Phụ kiện: Khăn Vành / Kiềng Cổ / Túi Gấm`, 90, 540);
+      ctx.fillText(`• Thời gian tạo: ${item.savedAt}`, 90, 575);
+      ctx.fillText(`• Thước đo tôn trọng di sản: 100% (Chuẩn quy chế)`, 90, 610);
+
+      // Footer bản quyền
+      ctx.fillStyle = '#92400E';
+      ctx.font = 'bold 12px Cinzel, serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('DỰ ÁN DI SẢN CỔ PHỤC GEN Z • VIET PHUC REMIX 2026', 300, 720);
+
+      const a = document.createElement('a');
+      a.href = cardCanvas.toDataURL('image/png');
+      a.download = `The_Lookbook_${item.costumeKey}_${Date.now()}.png`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      showToast('Đã tải ảnh Thẻ Lookbook chất lượng cao!');
+    }
+
+    // Sao chép link chia sẻ Lookbook
+    function copyShareLookbookLink() {
+      const shareUrl = `${window.location.origin}${window.location.pathname}?lookbookCount=${lookbookList.length}&costume=${currentCostumeKey}`;
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        showToast('🔗 Đã sao chép liên kết chia sẻ Lookbook vào Clipboard!');
+      }).catch(() => {
+        showToast('🔗 Đã tạo liên kết chia sẻ thành công!');
+      });
+    }
+
+    function copySingleLookbookShare(id) {
+      const item = lookbookList.find(i => i.id === id);
+      if (!item) return;
+      const shareText = `Bộ phối Việt Phục: ${item.costumeName} (${item.eventName}) - Màu áo: ${item.shirtColorName}, Màu quần: ${item.pantColorName}. Thử ngay tại việt phục vhs!`;
+      navigator.clipboard.writeText(shareText).then(() => {
+        showToast(`Đã chép thông tin bộ ${item.costumeName} để chia sẻ!`);
+      });
+    }
+
+    // So sánh 2 bộ phối (Compare Modal)
+    function openCompareModal() {
+      const compModal = document.getElementById('compareModal');
+      const compContainer = document.getElementById('compareContentContainer');
+      if (!compModal || !compContainer) return;
+
+      if (lookbookList.length < 2) {
+        showToast('Bạn cần lưu ít nhất 2 bản phối trong Lookbook để so sánh!');
+        return;
+      }
+
+      const itemA = lookbookList[0];
+      const itemB = lookbookList[1];
+
+      compContainer.innerHTML = `
+        <div class="grid grid-cols-2 gap-4">
+          <!-- Cột A -->
+          <div class="p-4 rounded-2xl bg-[#FCFBF9] border border-[#E6DFD5] space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded-full bg-[#FFFBEB] text-[#92400E] font-bold text-[10px]">Bản Phối 1</span>
+              <span class="font-heritage text-xs font-bold text-[#1F1A17]">${itemA.costumeName}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-4 h-4 rounded-full border border-black/10" style="background-color: ${itemA.shirtColor}"></span>
+              <span class="text-xs text-[#1F1A17]">Áo: ${itemA.shirtColorName}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-4 h-4 rounded-full border border-black/10" style="background-color: ${itemA.pantColor}"></span>
+              <span class="text-xs text-[#1F1A17]">Quần: ${itemA.pantColorName}</span>
+            </div>
+            <div class="text-[11px] text-[#6B635B]">
+              <strong>Dịp mặc:</strong> ${itemA.eventName}
+            </div>
+            <div class="text-[11px] text-[#6B635B]">
+              <strong>Bối cảnh:</strong> ${itemA.sceneName}
+            </div>
+            <button type="button" onclick="applyLookbookItem('${itemA.id}'); closeCompareModal();" class="w-full py-1.5 rounded-xl bg-[#F5F2EB] hover:bg-[#B45309] hover:text-white text-xs font-bold text-[#1F1A17] transition-colors cursor-pointer">
+              Chọn mặc bộ này
+            </button>
+          </div>
+
+          <!-- Cột B -->
+          <div class="p-4 rounded-2xl bg-[#FCFBF9] border border-[#E6DFD5] space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded-full bg-[#EFF6FF] text-[#1E40AF] font-bold text-[10px]">Bản Phối 2</span>
+              <span class="font-heritage text-xs font-bold text-[#1F1A17]">${itemB.costumeName}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-4 h-4 rounded-full border border-black/10" style="background-color: ${itemB.shirtColor}"></span>
+              <span class="text-xs text-[#1F1A17]">Áo: ${itemB.shirtColorName}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-4 h-4 rounded-full border border-black/10" style="background-color: ${itemB.pantColor}"></span>
+              <span class="text-xs text-[#1F1A17]">Quần: ${itemB.pantColorName}</span>
+            </div>
+            <div class="text-[11px] text-[#6B635B]">
+              <strong>Dịp mặc:</strong> ${itemB.eventName}
+            </div>
+            <div class="text-[11px] text-[#6B635B]">
+              <strong>Bối cảnh:</strong> ${itemB.sceneName}
+            </div>
+            <button type="button" onclick="applyLookbookItem('${itemB.id}'); closeCompareModal();" class="w-full py-1.5 rounded-xl bg-[#F5F2EB] hover:bg-[#B45309] hover:text-white text-xs font-bold text-[#1F1A17] transition-colors cursor-pointer">
+              Chọn mặc bộ này
+            </button>
+          </div>
+        </div>
+      `;
+
+      compModal.classList.remove('hidden');
+      compModal.classList.add('flex');
+    }
+
+    function closeCompareModal() {
+      const compModal = document.getElementById('compareModal');
+      if (compModal) {
+        compModal.classList.add('hidden');
+        compModal.classList.remove('flex');
+      }
+    }
+
+    function applyLookbookItem(id) {
+      const item = lookbookList.find(i => i.id === id);
+      if (!item) return;
+
+      changeCostume(item.costumeKey);
+      setShirtColor(item.shirtColor, item.shirtColorName);
+      setPantColor(item.pantColor, item.pantColorName);
+      if (item.hairColor) setHairColor(item.hairColor, 'Màu Tóc');
+      if (item.hatColor) setHatColor(item.hatColor, 'Màu Mũ');
+      if (item.bagColor) setBagColor(item.bagColor, 'Màu Túi');
+      if (item.eventKey && item.eventName) selectEvent(item.eventKey, item.eventName, '✨');
+      if (item.sceneBg && item.sceneName) changeScene(item.sceneBg, item.sceneName);
+
+      closeLookbookModal();
+      showToast(`Đã áp dụng: ${item.costumeName}`);
+    }
+
+    function deleteLookbookItem(id) {
+      lookbookList = lookbookList.filter(i => i.id !== id);
+      try {
+        localStorage.setItem('vietphuc_lookbook', JSON.stringify(lookbookList));
+      } catch (e) {}
+      updateLookbookUI();
+      showToast('Đã xóa bản phối khỏi Lookbook!');
+    }
+
+    function clearAllLookbooks() {
+      if (lookbookList.length === 0) return;
+      lookbookList = [];
+      try {
+        localStorage.setItem('vietphuc_lookbook', JSON.stringify(lookbookList));
+      } catch (e) {}
+      updateLookbookUI();
+      showToast('Đã dọn dẹp sạch Lookbook!');
+    }
+
+    function openLookbookModal() {
+      const modal = document.getElementById('lookbookModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+      updateLookbookUI();
+    }
+
+    function closeLookbookModal() {
+      const modal = document.getElementById('lookbookModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    // =========================================================================
+    // MODULE 3.5: BỘ CHUYỂN PHÂN HỆ ĐỘC LẬP & CẨM NANG GỢI Ý MIX-MATCH GEN Z
+    // =========================================================================
+    let currentActiveSubsystem = 'mockup';
+    let gallerySelectedRegion = 'all';
+    let gallerySelectedEvent = 'all';
+    let gallerySelectedStyle = 'all';
+    let gallerySearchQuery = '';
+
+    // DỮ LIỆU CẨM NANG & THẺ GỢI Ý MIX-MATCH THỰC TẾ (8 CONCEPT PHONG PHÚ)
+    const GALLERY_CARDS_DATA = [
+      {
+        id: 'card_hn_hoguom_aotac',
+        costumeKey: 'aotac',
+        title: 'Áo Tấc Xanh Cốm x Hồ Gươm Thu',
+        location: 'Bờ Hồ Gươm - Tháp Rùa',
+        region: 'hanoi',
+        regionName: 'Hà Nội',
+        eventKey: 'streetwear',
+        eventName: 'Dạo phố hàng ngày',
+        style: 'genz',
+        styleName: 'Remix Gen Z cá tính',
+        image: './HoGuom1.jpg',
+        outfitDescription: 'Áo Tấc ngũ thân tay thụng lụa Vạn Phúc màu Xanh Cốm dịu mát phối Quần lụa tuyết sa trắng mềm rủ.',
+        accessories: ['👟 Sneaker trắng cổ thấp', '👜 Túi bao tử gấm dệt hoa', '👓 Kính râm oval retro 90s', '🪭 Quạt lụa tố nữ'],
+        hairStyle: 'Tóc búi thấp lơi tự nhiên, điểm xuyết kẹp càng cua xà cừ tối giản phong cách Hàn - Việt.',
+        poseTip: 'Góc nghiêng 45 độ ven hàng liễu rủ Hồ Gươm, một tay che nắng hờ, bước đi chậm để tà áo thụng đón gió bay tự nhiên.',
+        culturalNote: 'Áo Tấc là lễ phục ngũ thân tôn nghiêm triều Nguyễn. Khi dạo phố cùng sneaker, hãy cài đủ 5 khuy áo để giữ đúng phẩm giá đoan chính của cổ phục.',
+        colors: [
+          { name: 'Xanh Cốm Hà Nội', hex: '#4D533C' },
+          { name: 'Bạch Sa Sa', hex: '#FAF7F0' }
+        ]
+      },
+      {
+        id: 'card_hue_nhatbinh_cungdinh',
+        costumeKey: 'nhatbinh',
+        title: 'Nhật Bình Cách Tân x Cung Đình Tử Cấm',
+        location: 'Đại Nội Huế & Cố Đô',
+        region: 'hue',
+        regionName: 'Huế',
+        eventKey: 'tet',
+        eventName: 'Tết & Lễ hội',
+        style: 'traditional',
+        styleName: 'Truyền thống thuần túy',
+        image: './codohue.jpg',
+        outfitDescription: 'Áo Nhật Bình sắc Đỏ Điều đại lễ thêu phượng, vải gấm sa triều Nguyễn + Quần lụa tuyết sa trắng tinh khôi.',
+        accessories: ['🧣 Khăn vành ngũ sắc cung đình', '📿 Kiềng bạc chạm hoa mai', '🪵 Guốc mộc mạ sơn then cổ', '🪭 Quạt trầm hương'],
+        hairStyle: 'Tóc vấn gọn gàng đội trọn khăn vành, điểm khuyên tai ngọc trai tự nhiên thanh tao.',
+        poseTip: 'Đứng chính diện trước cửa điện rường cột gỗ son, hai tay xếp trang trọng trước ngực tôn trọn cổ áo chữ nhật ngũ hành ngũ sắc.',
+        culturalNote: 'Áo Nhật Bình là thường phục cao quý của Hậu phi triều Nguyễn. Hoa văn viền cổ tượng trưng cho ngũ hành tương sinh (Kim - Mộc - Thủy - Hỏa - Thổ), không được cắt ngắn vạt.',
+        colors: [
+          { name: 'Đỏ Điều Son', hex: '#BA181B' },
+          { name: 'Hoàng Kim Cửu Đỉnh', hex: '#D4AF37' }
+        ]
+      },
+      {
+        id: 'card_hoian_nguthan_hoainiem',
+        costumeKey: 'aotac',
+        title: 'Áo Ngũ Thân Đỏ x Phố Cổ Hoài Niệm',
+        location: 'Phố Cổ Hội An - Chùa Cầu',
+        region: 'hoian',
+        regionName: 'Hội An',
+        eventKey: 'streetwear',
+        eventName: 'Dạo phố hàng ngày',
+        style: 'genz',
+        styleName: 'Remix Gen Z cá tính',
+        image: './phocohoianchuacau.jpg',
+        outfitDescription: 'Áo Ngũ Thân màu Đỏ Thắm dệt hoa cúc dây chìm + Quần lụa đũi mộc màu kem cát thanh lịch.',
+        accessories: ['👜 Túi cói thủ công Hội An', '👓 Kính mắt gọng tròn vintage', '📷 Máy ảnh film cơ cổ điển', '🪵 Guốc mộc quai nhung'],
+        hairStyle: 'Tóc đen xõa tự nhiên buông lơi qua vai, kẹp hoa sứ cài nhẹ mái tóc hoài niệm.',
+        poseTip: 'Dừng bước dưới giàn hoa giấy cạnh bức tường vàng rêu phong, tay nâng máy ảnh film hờ ngang ngực như đang quan sát phố cổ.',
+        culturalNote: 'Áo ngũ thân tượng trưng cho tứ thân phụ mẫu và bản thân người mặc (5 thân áo). Cổ đứng 4cm thể hiện đức tính đoan chính của người Việt xưa.',
+        colors: [
+          { name: 'Đỏ Thắm Hội An', hex: '#BA181B' },
+          { name: 'Cát Mộc Sa', hex: '#F5EDE0' }
+        ]
+      },
+      {
+        id: 'card_hn_nhatbinh_retro',
+        costumeKey: 'nhatbinh',
+        title: 'Nhật Bình Hoàng Gia x Kính Râm Retro',
+        location: 'Đoan Môn - Hoàng Thành Thăng Long',
+        region: 'hanoi',
+        regionName: 'Hà Nội',
+        eventKey: 'tet',
+        eventName: 'Tết & Lễ hội',
+        style: 'genz',
+        styleName: 'Remix Gen Z cá tính',
+        image: './HoangThanhThangLong2.jpg',
+        outfitDescription: 'Áo Nhật Bình sắc Hoàng Kim cung đình phối dải ngũ sắc ngũ hành + Quần lụa đỏ son may phom suông thời thượng.',
+        accessories: ['👓 Kính râm gọng oval 90s', '👜 Túi bao tử gấm thêu tay', '📿 Kiềng bạc trơn tối giản', '🧣 Khăn lụa quấn đầu'],
+        hairStyle: 'Tóc búi củ tỏi cao hiện đại kết hợp trâm ngọc xà cừ hoặc khăn vành ngũ sắc cách tân.',
+        poseTip: 'Ngồi trên bậc đá cổ ngắm bầu trời, một tay đặt lên gối, tay kia cầm kính râm hờ, tạo thần thái cinematic quyền lực đương đại.',
+        culturalNote: 'Sắc vàng hoàng kim xưa kia dành cho bậc chí tôn. Giới trẻ diện dịp Tết mang ý nghĩa đón tài lộc, vượng khí cát tường và khởi sắc đầu năm.',
+        colors: [
+          { name: 'Hoàng Kim Cửu Đỉnh', hex: '#D4AF37' },
+          { name: 'Đỏ Điều Son', hex: '#BA181B' }
+        ]
+      },
+      {
+        id: 'card_saigon_aotac_modern',
+        costumeKey: 'aotac',
+        title: 'Áo Tấc Rêu Phong x Art Gallery Sài Gòn',
+        location: 'Bảo Tàng Mỹ Thuật TP.HCM',
+        region: 'saigon',
+        regionName: 'Sài Gòn',
+        eventKey: 'streetwear',
+        eventName: 'Dạo phố hàng ngày',
+        style: 'genz',
+        styleName: 'Remix Gen Z cá tính',
+        image: './baotangmythuathcm.jpg',
+        outfitDescription: 'Áo Tấc màu Rêu Phong Cổ Tự chất liệu đũi lụa tự nhiên thoáng mát + Quần ống rộng Hắc Sa mun tuyền cá tính.',
+        accessories: ['👜 Túi da đeo chéo phong cách tối giản', '👟 Boots da cổ lửng hiện đại', '💍 Nhẫn bạc chạm hoa sen', '🧣 Khăn lụa mỏng'],
+        hairStyle: 'Tóc ngắn uốn cụp đuôi cá tính hoặc tóc cột nửa đầu kiểu thanh lịch thành thị đương đại.',
+        poseTip: 'Bước đi thong thả giữa dãy hành lang vòm kiến trúc Art Deco, vạt áo tấc bay nhẹ theo từng nhịp chân, ánh mắt nhìn nghiêng về khung cửa sổ cổ kính.',
+        culturalNote: 'Tay thụng của áo Tấc đại diện cho phong thái ung dung, khiêm nhường. Tránh xắn tay áo lên quá cao làm mất phom thụng nguyên bản.',
+        colors: [
+          { name: 'Rêu Phong Cổ Tự', hex: '#4D533C' },
+          { name: 'Hắc Sa Mun Tuyền', hex: '#1C1917' }
+        ]
+      },
+      {
+        id: 'card_hoian_aodai_kyyeu',
+        costumeKey: 'aodai',
+        title: 'Áo Dài Trúc Xanh x Nón Bài Thơ Nữ Sinh',
+        location: 'Bờ Sông Hoài - Hội An',
+        region: 'hoian',
+        regionName: 'Hội An',
+        eventKey: 'ky_yeu',
+        eventName: 'Đi học / Kỷ yếu',
+        style: 'traditional',
+        styleName: 'Truyền thống thuần túy',
+        image: './songhoaihoian.jpg',
+        outfitDescription: 'Áo Dài truyền thống cổ cao 3cm màu Lục Trúc tơ tằm dệt chìm hoa cúc + Quần lụa trắng Hà Đông mềm rủ thanh thoát.',
+        accessories: ['👒 Nón lá bài thơ nhỏ nhắn', '🪷 Hoa sen trắng búp cầm tay', '📿 Kiềng bạc mảnh nữ sinh', '🪵 Guốc gỗ mộc sơn bóng'],
+        hairStyle: 'Tóc đen xõa dài tự nhiên truyền thống, kẹp nhẹ một bên mang tai tạo vẻ thuần khiết tuổi học trò.',
+        poseTip: 'Một tay giữ vành nón lá nghiêng che má, tay kia ôm bó sen búp ngang ngực, mắt nhìn dòng sông Hoài phẳng lặng êm trôi.',
+        culturalNote: 'Áo dài nữ sinh tôn vinh vẻ đẹp kín đáo, thanh tao của người con gái Việt. Tránh may chất liệu quá mỏng xuyên thấu làm mất đi vẻ tôn nghiêm học đường.',
+        colors: [
+          { name: 'Lục Trúc Rừng Sâu', hex: '#2D6A4F' },
+          { name: 'Bạch Tuyết Sa', hex: '#FAF7F0' }
+        ]
+      },
+      {
+        id: 'card_hn_hysu_nhatbinh',
+        costumeKey: 'nhatbinh',
+        title: 'Nhật Bình Sen Hồng x Đại Lễ Hỷ Sự',
+        location: 'Không Gian Cưới Cổ Truyền Hà Nội',
+        region: 'hanoi',
+        regionName: 'Hà Nội',
+        eventKey: 'dam_cuoi',
+        eventName: 'Cưới hỏi / Bê tráp',
+        style: 'traditional',
+        styleName: 'Truyền thống thuần túy',
+        image: './damcuoitruyenthong.jpg',
+        outfitDescription: 'Áo Nhật Bình sắc Hồng Cánh Sen thêu song phụng sum vầy, dải ngũ hành viền kim tuyến + Quần lụa gấm trắng dệt vân mây.',
+        accessories: ['🧣 Khăn vành dát chỉ kim tuyến', '📿 Kiềng cổ bạc 3 vòng', '🪭 Quạt trầm hương khắc chữ Hỷ', '🪵 Guốc sơn son thếp vàng'],
+        hairStyle: 'Tóc vấn trâm ngọc bích điểm hoa tươi, hoa tai nụ ngọc trai hồng nhạt dịu dàng trang nhã.',
+        poseTip: 'Đứng cạnh tân lang hoặc dàn bê tráp, hai tay cầm quạt khép che hờ dưới cằm, ánh nhìn e ấp nhẹ nhàng chuẩn phong thái tiểu thư khuê các.',
+        culturalNote: 'Màu hồng cánh sen và đỏ son là màu hỷ khí cát tường, đại kỵ dùng sắc áo quá u tối (đen tuyền) trong lễ ăn hỏi và lễ cưới của người Việt.',
+        colors: [
+          { name: 'Hồng Cánh Sen', hex: '#DB2777' },
+          { name: 'Bạch Tuyết Sa', hex: '#FAF7F0' }
+        ]
+      },
+      {
+        id: 'card_hn_vanmieu_aotac',
+        costumeKey: 'aotac',
+        title: 'Áo Tấc Lam Tràm x Kỷ Yếu Văn Miếu',
+        location: 'Văn Miếu Quốc Tử Giám - Hà Nội',
+        region: 'hanoi',
+        regionName: 'Hà Nội',
+        eventKey: 'ky_yeu',
+        eventName: 'Đi học / Kỷ yếu',
+        style: 'traditional',
+        styleName: 'Truyền thống thuần túy',
+        image: './vanmieu.jpg',
+        outfitDescription: 'Áo Tấc màu Lam Tràm cung đình trang nhã chất liệu gấm trơn + Quần lụa trắng sa thanh khiết.',
+        accessories: ['📜 Cuộn thư pháp chữ Đạt', '🪭 Quạt giấy Dó truyền thống', '🪵 Guốc mộc mạ then cổ', '🧣 Khăn đóng chữ Nhân'],
+        hairStyle: 'Tóc buộc gọn gàng hoặc rẽ ngôi cổ điển nho nhã chuẩn phong thái sĩ tử đất kinh kỳ.',
+        poseTip: 'Đứng bên hồ Khuê Văn Các, hai tay kính cẩn nâng cuộn thư pháp trước ngực, ánh nhìn tự hào hướng về bia tiến sĩ.',
+        culturalNote: 'Văn Miếu là chốn tôn nghiêm đạo học; mặc Áo Tấc chuẩn trang phục lễ nghi thể hiện sự tôn sư trọng đạo và tri ân thầy cô sâu sắc.',
+        colors: [
+          { name: 'Lam Tràm Cung Đình', hex: '#1D3557' },
+          { name: 'Bạch Sa Tuyết', hex: '#FAF7F0' }
+        ]
+      }
+    ];
+
+    // Chuyển đổi giữa 2 phân hệ độc lập (Mockup vs Cẩm Nang)
+    function switchSubsystem(subsystemId, optionalCostumeFilter) {
+      currentActiveSubsystem = subsystemId;
+      const mockupView = document.getElementById('subsystem_mockup');
+      const cardsView = document.getElementById('subsystem_cards');
+      const btnMockup = document.getElementById('navSubsystemBtn_mockup');
+      const btnCards = document.getElementById('navSubsystemBtn_cards');
+
+      if (subsystemId === 'mockup') {
+        if (mockupView) mockupView.classList.remove('hidden');
+        if (cardsView) {
+          cardsView.classList.add('hidden');
+          cardsView.classList.remove('flex');
+        }
+        if (btnMockup) {
+          btnMockup.className = 'py-1.5 px-3 lg:px-4 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 bg-white text-[#92400E] shadow-xs active:scale-95 border border-[#E6DFD5]/60';
+        }
+        if (btnCards) {
+          btnCards.className = 'py-1.5 px-3 lg:px-4 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 text-[#6B635B] hover:text-[#92400E] hover:bg-white/60 active:scale-95';
+        }
+      } else {
+        if (mockupView) mockupView.classList.add('hidden');
+        if (cardsView) {
+          cardsView.classList.remove('hidden');
+          cardsView.classList.add('flex');
+        }
+        if (btnCards) {
+          btnCards.className = 'py-1.5 px-3 lg:px-4 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 bg-white text-[#92400E] shadow-xs active:scale-95 border border-[#E6DFD5]/60';
+        }
+        if (btnMockup) {
+          btnMockup.className = 'py-1.5 px-3 lg:px-4 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 text-[#6B635B] hover:text-[#92400E] hover:bg-white/60 active:scale-95';
+        }
+
+        if (optionalCostumeFilter) {
+          const cosName = COSTUMES[optionalCostumeFilter]?.name || '';
+          const searchInput = document.getElementById('gallerySearchInput');
+          if (searchInput && cosName) {
+            searchInput.value = cosName;
+            gallerySearchQuery = cosName.toLowerCase();
+          }
+        }
+        renderGalleryCards();
+      }
+    }
+
+    // Nút tắt từ Column 1 chuyển nhanh sang Cẩm Nang
+    function switchToStylingCardsWithFilter() {
+      switchSubsystem('cards', currentCostumeKey);
+      const cosName = COSTUMES[currentCostumeKey]?.name || 'set trang phục';
+      showToast(`🎴 Đã mở Cẩm Nang Mix-Match cho ${cosName}!`);
+    }
+
+    // Xử lý bộ lọc Gallery
+    function handleGalleryFilter(filterType, val) {
+      if (filterType === 'region') gallerySelectedRegion = val;
+      if (filterType === 'event') gallerySelectedEvent = val;
+      if (filterType === 'style') gallerySelectedStyle = val;
+
+      // Cập nhật trạng thái active của các nút lọc
+      document.querySelectorAll(`.gallery-filter-btn[data-filter="${filterType}"]`).forEach(btn => {
+        if (btn.getAttribute('data-val') === val) {
+          btn.className = 'gallery-filter-btn px-2.5 py-1 rounded-xl text-[10px] font-bold bg-[#FFFBEB] text-[#92400E] border border-[#FCD34D] cursor-pointer shadow-xs whitespace-nowrap';
+        } else {
+          btn.className = 'gallery-filter-btn px-2.5 py-1 rounded-xl text-[10px] font-medium bg-[#FCFBF9] text-[#6B635B] border border-[#E6DFD5] hover:border-[#B45309] cursor-pointer whitespace-nowrap';
+        }
+      });
+
+      renderGalleryCards();
+    }
+
+    // Tìm kiếm trong Gallery
+    function handleGallerySearch(query) {
+      gallerySearchQuery = (query || '').trim().toLowerCase();
+      renderGalleryCards();
+    }
+
+    // Đặt lại toàn bộ bộ lọc Gallery
+    function resetGalleryFilters() {
+      gallerySelectedRegion = 'all';
+      gallerySelectedEvent = 'all';
+      gallerySelectedStyle = 'all';
+      gallerySearchQuery = '';
+
+      const searchInput = document.getElementById('gallerySearchInput');
+      if (searchInput) searchInput.value = '';
+
+      ['region', 'event', 'style'].forEach(t => {
+        document.querySelectorAll(`.gallery-filter-btn[data-filter="${t}"]`).forEach(btn => {
+          if (btn.getAttribute('data-val') === 'all') {
+            btn.className = 'gallery-filter-btn px-2.5 py-1 rounded-xl text-[10px] font-bold bg-[#FFFBEB] text-[#92400E] border border-[#FCD34D] cursor-pointer shadow-xs whitespace-nowrap';
+          } else {
+            btn.className = 'gallery-filter-btn px-2.5 py-1 rounded-xl text-[10px] font-medium bg-[#FCFBF9] text-[#6B635B] border border-[#E6DFD5] hover:border-[#B45309] cursor-pointer whitespace-nowrap';
+          }
+        });
+      });
+
+      renderGalleryCards();
+      showToast('Đã đặt lại toàn bộ bộ lọc Cẩm Nang!');
+    }
+
+    // Render danh sách thẻ trong Gallery Grid
+    function renderGalleryCards() {
+      const container = document.getElementById('galleryCardsGrid');
+      const counterBadge = document.getElementById('galleryCounterBadge');
+      if (!container) return;
+
+      const filteredList = GALLERY_CARDS_DATA.filter(item => {
+        const matchRegion = gallerySelectedRegion === 'all' || item.region === gallerySelectedRegion;
+        const matchEvent = gallerySelectedEvent === 'all' || item.eventKey === gallerySelectedEvent;
+        const matchStyle = gallerySelectedStyle === 'all' || item.style === gallerySelectedStyle;
+        
+        let matchQuery = true;
+        if (gallerySearchQuery) {
+          const searchable = `${item.title} ${item.location} ${item.regionName} ${item.eventName} ${item.outfitDescription} ${item.accessories.join(' ')} ${item.poseTip}`.toLowerCase();
+          matchQuery = searchable.includes(gallerySearchQuery);
+        }
+
+        return matchRegion && matchEvent && matchStyle && matchQuery;
+      });
+
+      if (counterBadge) {
+        counterBadge.textContent = `${filteredList.length}/${GALLERY_CARDS_DATA.length} concept`;
+      }
+
+      container.innerHTML = '';
+
+      if (filteredList.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-16 text-center space-y-3 bg-white rounded-3xl border border-[#E6DFD5] p-8">
+            <i class="fa-solid fa-compass text-4xl text-[#D6CEBE]"></i>
+            <h4 class="font-heritage text-base font-bold text-[#1F1A17]">Không tìm thấy concept phù hợp</h4>
+            <p class="text-xs text-[#6B635B] max-w-md mx-auto">
+              Không có bộ phối nào khớp với tiêu chí tìm kiếm. Bạn hãy thử chọn vùng miền khác hoặc xóa từ khóa.
+            </p>
+            <button type="button" onclick="resetGalleryFilters()" class="py-2 px-4 rounded-xl bg-[#FFFBEB] hover:bg-[#FEF3C7] text-[#92400E] border border-[#FCD34D] text-xs font-bold cursor-pointer transition-all">
+              Xem toàn bộ 8 concept cẩm nang
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      // Tạo wrapper lưới Responsive (3-4 cột)
+      const grid = document.createElement('div');
+      grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4';
+
+      filteredList.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-3xl border border-[#E6DFD5] hover:border-[#B45309]/50 shadow-[0_4px_16px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300 hover:-translate-y-1 group flex flex-col justify-between';
+
+        // Palette mini dots
+        const colorDots = item.colors.map(c => `
+          <span class="w-2.5 h-2.5 rounded-full inline-block border border-white/40 shadow-xs" style="background-color: ${c.hex};" title="${c.name} (${c.hex})"></span>
+        `).join('');
+
+        // Accessory chips
+        const accChips = item.accessories.map(acc => `
+          <span class="text-[9px] px-1.5 py-0.5 rounded-md bg-white border border-[#E6DFD5] text-[#44403C] whitespace-nowrap shadow-2xs">${acc}</span>
+        `).join('');
+
+        card.innerHTML = `
+          <!-- 1. HÌNH ẢNH MINH HỌA (VISUAL SHOWCASE) -->
+          <div class="relative w-full h-48 overflow-hidden bg-stone-100 shrink-0">
+            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-black/30"></div>
+
+            <!-- Badges góc trên -->
+            <div class="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between gap-1.5 pointer-events-none">
+              <span class="bg-black/65 backdrop-blur-md text-white text-[9px] font-medium px-2.5 py-0.5 rounded-full border border-white/20 flex items-center gap-1 shadow-xs">
+                <i class="fa-solid fa-location-dot text-[#F59E0B]"></i>
+                <span class="truncate">${item.location}</span>
+              </span>
+              <span class="bg-[#B45309]/90 backdrop-blur-md text-white text-[9px] font-bold px-2 py-0.5 rounded-full border border-white/20 uppercase tracking-wide shadow-xs shrink-0">
+                ${item.styleName}
+              </span>
+            </div>
+
+            <!-- Badges góc dưới ảnh -->
+            <div class="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between pointer-events-none">
+              <span class="bg-white/95 backdrop-blur-md text-[#92400E] text-[10px] font-bold px-2 py-0.5 rounded-full border border-[#E6DFD5] shadow-xs flex items-center gap-1">
+                <span>✨</span>
+                <span>${item.eventName}</span>
+              </span>
+
+              <!-- Bảng màu preview mini -->
+              <div class="bg-black/65 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/20 flex items-center gap-1 shadow-xs">
+                ${colorDots}
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. THÂN THẺ THÔNG TIN & CÔNG THỨC MIX ĐỒ -->
+          <div class="p-3.5 space-y-2.5 flex-1 flex flex-col justify-between">
+            <div class="space-y-2">
+              
+              <!-- Tiêu đề & Bối cảnh -->
+              <div>
+                <h3 class="font-heritage text-sm font-bold text-[#1F1A17] group-hover:text-[#B45309] transition-colors leading-snug">
+                  ${item.title}
+                </h3>
+                <div class="text-[10px] text-[#6B635B] flex items-center gap-1 mt-0.5">
+                  <span class="font-semibold text-[#B45309]">📍 ${item.regionName}</span>
+                  <span>•</span>
+                  <span>${item.location}</span>
+                </div>
+              </div>
+
+              <!-- CÔNG THỨC MIX ĐỒ GEN Z -->
+              <div class="bg-[#FCFBF9] p-2.5 rounded-2xl border border-[#E6DFD5] space-y-1.5 text-[11px]">
+                <div class="text-[10px] uppercase font-bold text-[#92400E] tracking-wider flex items-center gap-1">
+                  <i class="fa-solid fa-layer-group text-[9px]"></i> Công thức Mix & Match Gen Z:
+                </div>
+                <div class="space-y-1 text-[#1F1A17] leading-relaxed">
+                  <p class="text-[10px]"><strong class="text-[#1F1A17]">• Trang phục:</strong> ${item.outfitDescription}</p>
+                  <div>
+                    <span class="text-[10px] font-bold text-[#44403C]">• Phụ kiện:</span>
+                    <div class="flex flex-wrap gap-1 mt-1">${accChips}</div>
+                  </div>
+                  <p class="text-[10px] text-[#6B635B]"><strong class="text-[#44403C]">• Kiểu tóc:</strong> ${item.hairStyle}</p>
+                </div>
+              </div>
+
+              <!-- MẸO SỐNG ẢO & TẠO DÁNG -->
+              <div class="bg-[#FFFBEB] p-2 rounded-xl border border-[#FCD34D]/60 text-[10px] text-[#92400E] flex items-start gap-1.5 leading-relaxed">
+                <i class="fa-solid fa-camera text-[11px] text-[#D97706] mt-0.5 shrink-0"></i>
+                <div>
+                  <span class="font-bold">Mẹo sống ảo:</span> ${item.poseTip}
+                </div>
+              </div>
+
+              <!-- GHI CHÚ VĂN HÓA & HÀI HÒA -->
+              <div class="bg-[#F0FDF4] p-2 rounded-xl border border-[#86EFAC] text-[10px] text-[#15803D] flex items-start gap-1.5 leading-relaxed">
+                <i class="fa-solid fa-landmark text-[10px] text-[#16A34A] mt-0.5 shrink-0"></i>
+                <div>
+                  <span class="font-bold">Ghi chú di sản:</span> ${item.culturalNote}
+                </div>
+              </div>
+
+            </div>
+
+            <!-- 3. TƯƠNG TÁC TRÊN THẺ (CHỈ TƯƠNG TÁC NỘI BỘ, KHÔNG ĐỤNG MOCKUP) -->
+            <div class="flex items-center gap-2 pt-2 border-t border-[#E6DFD5]/80 mt-2">
+              <!-- Nút Lưu vào Lookbook -->
+              <button 
+                type="button" 
+                onclick="saveGalleryCardToLookbook('${item.id}')"
+                class="flex-1 py-1.5 px-3 rounded-xl bg-gradient-to-r from-[#D97706] to-[#EA580C] hover:from-[#B45309] hover:to-[#C2410C] text-white text-[11px] font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs active:scale-95"
+              >
+                <i class="fa-solid fa-bookmark text-xs"></i>
+                <span>Lưu Lookbook</span>
+              </button>
+
+              <!-- Nút Chia sẻ -->
+              <button 
+                type="button" 
+                onclick="shareGalleryCard('${item.id}')"
+                class="py-1.5 px-2.5 rounded-xl bg-white hover:bg-[#F5F2EB] border border-[#E6DFD5] hover:border-[#B45309] text-[#1F1A17] text-[11px] font-medium transition-colors cursor-pointer shadow-xs active:scale-95"
+                title="Sao chép thông tin để chia sẻ lên MXH"
+              >
+                <i class="fa-solid fa-share-nodes text-[#B45309]"></i>
+              </button>
+
+              <!-- Nút Xem chi tiết Concept -->
+              <button 
+                type="button" 
+                onclick="openCardDetailModal('${item.id}')"
+                class="py-1.5 px-2.5 rounded-xl bg-[#F5F2EB] hover:bg-[#EAE5DC] border border-[#E6DFD5] text-[#1F1A17] text-[11px] font-medium transition-colors cursor-pointer shadow-xs active:scale-95"
+                title="Xem chi tiết toàn cảnh concept"
+              >
+                <i class="fa-solid fa-maximize text-[10px]"></i>
+              </button>
+            </div>
+
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+
+      container.appendChild(grid);
+    }
+
+    // Mở Modal Xem Chi Tiết Concept
+    function openCardDetailModal(cardId) {
+      const item = GALLERY_CARDS_DATA.find(c => c.id === cardId);
+      if (!item) return;
+
+      const modal = document.getElementById('cardDetailModal');
+      const titleEl = document.getElementById('modalDetailTitle');
+      const bodyEl = document.getElementById('modalDetailBody');
+      const saveBtn = document.getElementById('modalDetailSaveBtn');
+      const shareBtn = document.getElementById('modalDetailShareBtn');
+      if (!modal || !bodyEl) return;
+
+      if (titleEl) titleEl.textContent = item.title;
+
+      const colorChips = item.colors.map(c => `
+        <div class="flex items-center gap-1.5 bg-[#FCFBF9] p-1.5 rounded-lg border border-[#E6DFD5]">
+          <span class="w-3.5 h-3.5 rounded-full inline-block border border-black/10" style="background-color: ${c.hex};"></span>
+          <span class="font-medium text-[11px] text-[#1F1A17]">${c.name}</span>
+          <span class="font-mono text-[9px] text-[#6B635B]">${c.hex}</span>
+        </div>
+      `).join('');
+
+      const accChips = item.accessories.map(acc => `
+        <span class="text-xs px-2.5 py-1 rounded-xl bg-[#FFFBEB] border border-[#FCD34D] text-[#92400E] font-medium shadow-xs">${acc}</span>
+      `).join('');
+
+      bodyEl.innerHTML = `
+        <!-- Ảnh Lớn & Badges -->
+        <div class="relative w-full h-64 rounded-2xl overflow-hidden shadow-sm">
+          <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover object-center">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+          
+          <div class="absolute bottom-3 left-3 right-3 text-white space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="bg-[#B45309] text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                ${item.styleName}
+              </span>
+              <span class="bg-white/20 backdrop-blur-md text-white text-[10px] px-2 py-0.5 rounded-full border border-white/20">
+                ✨ ${item.eventName}
+              </span>
+            </div>
+            <h2 class="font-heritage text-lg font-bold text-white drop-shadow-md">${item.title}</h2>
+            <div class="text-xs text-white/90 flex items-center gap-1.5">
+              <span>📍 ${item.location} (${item.regionName})</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bảng màu chủ đạo -->
+        <div class="space-y-1.5">
+          <h4 class="text-xs font-bold text-[#1F1A17] uppercase tracking-wide">Bảng Màu Chủ Đạo:</h4>
+          <div class="flex flex-wrap gap-2">${colorChips}</div>
+        </div>
+
+        <!-- Công thức phối đồ Gen Z -->
+        <div class="p-3.5 rounded-2xl bg-[#FCFBF9] border border-[#E6DFD5] space-y-2">
+          <h4 class="font-bold text-xs text-[#92400E] uppercase tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-layer-group"></i> Công Thức Phối Đồ Chi Tiết:
+          </h4>
+          <div class="space-y-1.5 text-xs text-[#1F1A17] leading-relaxed">
+            <p><strong>• Trang phục chính:</strong> ${item.outfitDescription}</p>
+            <div>
+              <span class="font-bold">• Phụ kiện đi kèm:</span>
+              <div class="flex flex-wrap gap-1.5 mt-1">${accChips}</div>
+            </div>
+            <p><strong>• Kiểu tóc & phụ kiện đầu:</strong> ${item.hairStyle}</p>
+          </div>
+        </div>
+
+        <!-- Mẹo sống ảo & tạo dáng -->
+        <div class="p-3 rounded-2xl bg-[#FFFBEB] border border-[#FCD34D] text-xs text-[#92400E] space-y-1">
+          <h4 class="font-bold text-xs flex items-center gap-1.5">
+            <i class="fa-solid fa-camera text-[#D97706]"></i> Mẹo Chụp Ảnh & Sống Ảo:
+          </h4>
+          <p class="leading-relaxed pl-5">${item.poseTip}</p>
+        </div>
+
+        <!-- Ghi chú di sản -->
+        <div class="p-3 rounded-2xl bg-[#F0FDF4] border border-[#86EFAC] text-xs text-[#15803D] space-y-1">
+          <h4 class="font-bold text-xs flex items-center gap-1.5">
+            <i class="fa-solid fa-landmark text-[#16A34A]"></i> Ghi Chú Văn Hóa & Di Sản:
+          </h4>
+          <p class="leading-relaxed pl-5">${item.culturalNote}</p>
+        </div>
+      `;
+
+      if (saveBtn) saveBtn.onclick = () => saveGalleryCardToLookbook(item.id);
+      if (shareBtn) shareBtn.onclick = () => shareGalleryCard(item.id);
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeCardDetailModal() {
+      const modal = document.getElementById('cardDetailModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    // Lưu thẻ từ Gallery vào Lookbook cá nhân (Chỉ tương tác nội bộ)
+    function saveGalleryCardToLookbook(cardId) {
+      const item = GALLERY_CARDS_DATA.find(c => c.id === cardId);
+      if (!item) return;
+
+      const lookItem = {
+        id: 'gallery_look_' + Date.now(),
+        costumeKey: item.costumeKey || 'nhatbinh',
+        costumeName: item.title,
+        eventKey: item.eventKey,
+        eventName: item.eventName,
+        shirtColor: item.colors[0]?.hex || '#BA181B',
+        shirtColorName: item.colors[0]?.name || 'Màu Cổ Phục',
+        pantColor: item.colors[1]?.hex || '#FAF7F0',
+        pantColorName: item.colors[1]?.name || 'Lụa Trắng',
+        hairColor: '#2D2D2D',
+        hatColor: item.colors[0]?.hex || '#BA181B',
+        bagColor: '#B45309',
+        sceneBg: item.image,
+        sceneName: item.location,
+        savedAt: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }) + ' ' + new Date().toLocaleDateString('vi-VN')
+      };
+
+      lookbookList.unshift(lookItem);
+      try {
+        localStorage.setItem('vietphuc_lookbook', JSON.stringify(lookbookList));
+      } catch (e) {}
+
+      updateLookbookUI();
+      showToast(`❤️ Đã lưu concept "${item.title}" vào Lookbook của bạn!`);
+    }
+
+    // Chia sẻ thẻ Gallery lên MXH
+    function shareGalleryCard(cardId) {
+      const item = GALLERY_CARDS_DATA.find(c => c.id === cardId);
+      if (!item) return;
+
+      const shareText = `🎴 Concept Việt Phục: "${item.title}"\n📍 Bối cảnh: ${item.location} (${item.regionName})\n✨ Phong cách: ${item.styleName}\n👟 Phụ kiện: ${item.accessories.join(', ')}\n📸 Mẹo tạo dáng: ${item.poseTip}\nThử ngay tại việt phục vhs!`;
+
+      navigator.clipboard.writeText(shareText).then(() => {
+        showToast(`🔗 Đã sao chép nội dung & công thức của "${item.title}"!`);
+      }).catch(() => {
+        showToast('🔗 Đã sao chép liên kết chia sẻ!');
+      });
+    }
+
+    // =========================================================================
+    // MODULE 4: ÁO DÀI EXPERT CHATBOT (INTERACTIVE LOGIC)
+    // =========================================================================
+    function switchRightTab(tab) {
+      const infoBtn = document.getElementById('tabBtn_info');
+      const chatBtn = document.getElementById('tabBtn_chat');
+      const infoContent = document.getElementById('tabContent_info');
+      const chatContent = document.getElementById('tabContent_chat');
+
+      if (tab === 'info') {
+        infoBtn.className = 'flex-1 pb-2.5 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer active-tab-glow font-heritage';
+        chatBtn.className = 'flex-1 pb-2.5 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer text-[#6B635B] hover:text-[#B45309] font-heritage';
+        infoContent.classList.remove('hidden');
+        chatContent.classList.add('hidden');
+      } else {
+        chatBtn.className = 'flex-1 pb-2.5 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer active-tab-glow font-heritage';
+        infoBtn.className = 'flex-1 pb-2.5 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer text-[#6B635B] hover:text-[#B45309] font-heritage';
+        chatContent.classList.remove('hidden');
+        infoContent.classList.add('hidden');
+        // Cuộn xuống tin nhắn mới nhất
+        const container = document.getElementById('chatMessagesContainer');
+        if (container) container.scrollTop = container.scrollHeight;
+      }
+    }
+
+    function handlePromptChip(promptText) {
+      // Đảm bảo tab chat đang mở
+      switchRightTab('chat');
+      sendChatMessage(promptText);
+    }
+
+    function handleChatSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('chatInput');
+      if (!input) return;
+      const msg = input.value.trim();
+      if (!msg) return;
+      input.value = '';
+      sendChatMessage(msg);
+    }
+
+    let chatConversationHistory = [];
+
+    async function sendChatMessage(userText) {
+      const container = document.getElementById('chatMessagesContainer');
+      if (!container) return;
+
+      // 1. Thêm bong bóng chat người dùng
+      const userBubble = document.createElement('div');
+      userBubble.className = 'flex items-start justify-end gap-2.5';
+      userBubble.innerHTML = `
+        <div class="chat-bubble-user p-3 rounded-2xl rounded-tr-sm text-white font-medium max-w-[85%] leading-relaxed shadow-sm">
+          <p>${escapeHtml(userText)}</p>
+        </div>
+        <div class="w-7 h-7 rounded-full bg-[#F5F2EB] text-[#B45309] flex items-center justify-center shrink-0 text-xs border border-[#E6DFD5]">
+          <i class="fa-solid fa-user text-[10px]"></i>
+        </div>
+      `;
+      container.appendChild(userBubble);
+      container.scrollTop = container.scrollHeight;
+
+      // 2. Thêm hiệu ứng Đang gõ (Typing Indicator)
+      const typingIndicator = document.createElement('div');
+      typingIndicator.id = 'typingIndicator';
+      typingIndicator.className = 'flex items-start gap-2.5';
+      typingIndicator.innerHTML = `
+        <div class="w-7 h-7 rounded-full bg-[#B45309] text-white font-bold flex items-center justify-center shrink-0 text-xs shadow-sm">
+          <i class="fa-solid fa-crown text-[10px]"></i>
+        </div>
+        <div class="chat-bubble-bot p-3 rounded-2xl rounded-tl-sm text-[#1F1A17] max-w-[85%] text-xs flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#B45309] animate-bounce"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-[#B45309] animate-bounce [animation-delay:0.2s]"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-[#B45309] animate-bounce [animation-delay:0.4s]"></span>
+          <span class="text-[10px] text-[#6B635B] ml-1">Gemini AI đang trả lời...</span>
+        </div>
+      `;
+      container.appendChild(typingIndicator);
+      container.scrollTop = container.scrollHeight;
+
+      // 3. Chuyển thẳng câu hỏi sang API Gemini và nhận câu trả lời
+      let botResponse = '';
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: userText,
+            history: chatConversationHistory,
+            currentOutfit: {
+              costumeName: COSTUMES[currentCostumeKey]?.name,
+              colorName: currentShirtColorName,
+              bottomName: currentPantColorName,
+              headwearName: COSTUMES[currentCostumeKey]?.hatTitle,
+              locationName: currentSceneName,
+              eventName: currentEventName
+            }
+          })
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.reply) {
+            botResponse = data.reply;
+          }
+        }
+      } catch (e) {
+        console.error('Lỗi kết nối Gemini API:', e);
+      }
+
+      if (!botResponse) {
+        botResponse = 'Rất tiếc, trợ lý stylist đang bận xử lý hoặc kết nối mạng bị gián đoạn. Bạn vui lòng thử gửi lại câu hỏi nhé!';
+      }
+
+      // Xóa typing indicator và hiển thị câu trả lời
+      const indicator = document.getElementById('typingIndicator');
+      if (indicator) indicator.remove();
+
+      // Cập nhật lịch sử hội thoại cho các lượt chat sau
+      chatConversationHistory.push({ role: 'user', text: userText });
+      chatConversationHistory.push({ role: 'model', text: botResponse });
+
+      const botBubble = document.createElement('div');
+      botBubble.className = 'flex items-start gap-2.5';
+      botBubble.innerHTML = `
+        <div class="w-7 h-7 rounded-full bg-[#B45309] text-white font-bold flex items-center justify-center shrink-0 text-xs shadow-sm">
+          <i class="fa-solid fa-wand-magic-sparkles text-[10px]"></i>
+        </div>
+        <div class="chat-bubble-bot p-3 rounded-2xl rounded-tl-sm text-[#1F1A17] max-w-[85%] leading-relaxed space-y-1">
+          <div class="font-bold text-[#B45309] text-[11px] flex items-center justify-between">
+            <span>Trợ Lý Stylist • Cổ Phục Di Sản</span>
+            <span class="text-[9px] text-[#15803D] font-mono font-normal flex items-center gap-1">
+              <i class="fa-solid fa-sparkles text-[8px]"></i> Stylist
+            </span>
+          </div>
+          <div class="whitespace-pre-line text-xs text-[#1F1A17]">${formatMarkdown(botResponse)}</div>
+        </div>
+      `;
+      container.appendChild(botBubble);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function formatMarkdown(text) {
+      return text
+        .replace(/\*\*(.*?)\*\*/g, '<strong class="text-[#92400E] font-bold">$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>');
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // =========================================================================
+    // NATIVE CANVAS LOOKBOOK EXPORT (CHỤP ẢNH CANVAS PNG)
+    // =========================================================================
+    async function triggerLookbookCapture() {
+      const flash = document.getElementById('shutter-flash');
+      if (flash) {
+        flash.classList.remove('opacity-0');
+        flash.classList.add('opacity-100');
+        setTimeout(() => {
+          flash.classList.remove('opacity-100');
+          flash.classList.add('opacity-0');
+        }, 180);
+      }
+
+      showToast('Đang chụp và xuất ảnh Lookbook chất lượng cao...');
+
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = 800;
+        canvas.height = 1200;
+        const ctx = canvas.getContext('2d');
+
+        const loadImage = (src) => new Promise((resolve) => {
+          const img = new Image();
+          img.crossOrigin = 'anonymous';
+          img.onload = () => resolve(img);
+          img.onerror = () => resolve(null);
+          img.src = src;
+        });
+
+        // 1. Nền
+        const bgImg = await loadImage(currentSceneBg);
+        if (bgImg) {
+          ctx.drawImage(bgImg, 0, 0, 800, 1200);
+        } else {
+          ctx.fillStyle = '#FAF7F2';
+          ctx.fillRect(0, 0, 800, 1200);
+        }
+
+        const costume = COSTUMES[currentCostumeKey];
+        const baseScale = costume.baseScale || 1.0;
+        const finalScale = baseScale * userScale;
+
+        // 2. Sketch
+        const sketchImg = await loadImage(costume.sketch);
+        if (sketchImg) {
+          const targetH = 1080 * finalScale;
+          const targetW = (sketchImg.width / sketchImg.height) * targetH;
+          const targetX = 400 + (userTranslateX * 2) - (targetW / 2);
+          const targetY = 1200 - targetH;
+
+          ctx.drawImage(sketchImg, targetX, targetY, targetW, targetH);
+
+          // 3. Áo
+          if (costume.shirtMask) {
+            const shirtImg = await loadImage(costume.shirtMask);
+            if (shirtImg) {
+              const off = document.createElement('canvas');
+              off.width = targetW;
+              off.height = targetH;
+              const offCtx = off.getContext('2d');
+              offCtx.drawImage(shirtImg, 0, 0, targetW, targetH);
+              offCtx.globalCompositeOperation = 'source-in';
+              offCtx.fillStyle = currentShirtColor;
+              offCtx.fillRect(0, 0, targetW, targetH);
+
+              ctx.save();
+              ctx.globalCompositeOperation = 'multiply';
+              ctx.drawImage(off, targetX, targetY);
+              ctx.restore();
+            }
+          }
+
+          // 4. Quần
+          if (costume.pantMask) {
+            const pantImg = await loadImage(costume.pantMask);
+            if (pantImg) {
+              const off2 = document.createElement('canvas');
+              off2.width = targetW;
+              off2.height = targetH;
+              const offCtx2 = off2.getContext('2d');
+              offCtx2.drawImage(pantImg, 0, 0, targetW, targetH);
+              offCtx2.globalCompositeOperation = 'source-in';
+              offCtx2.fillStyle = currentPantColor;
+              offCtx2.fillRect(0, 0, targetW, targetH);
+
+              ctx.save();
+              ctx.globalCompositeOperation = 'multiply';
+              ctx.drawImage(off2, targetX, targetY);
+              ctx.restore();
+            }
+          }
+
+          // 5. Tóc
+          if (costume.hairMask) {
+            const hairImg = await loadImage(costume.hairMask);
+            if (hairImg) {
+              const offHair = document.createElement('canvas');
+              offHair.width = targetW;
+              offHair.height = targetH;
+              const offCtxHair = offHair.getContext('2d');
+              offCtxHair.drawImage(hairImg, 0, 0, targetW, targetH);
+              offCtxHair.globalCompositeOperation = 'source-in';
+              offCtxHair.fillStyle = currentHairColor;
+              offCtxHair.fillRect(0, 0, targetW, targetH);
+
+              ctx.save();
+              ctx.globalCompositeOperation = 'multiply';
+              ctx.drawImage(offHair, targetX, targetY);
+              ctx.restore();
+            }
+          }
+
+          // 6. Mũ (Gom lại thành 1 đối tượng đồng bộ theo tỷ lệ nhân vật)
+          if (costume.hatMask) {
+            const hatImg = await loadImage(costume.hatMask);
+            if (hatImg) {
+              const hatTx = (costume.hatTx || 0) * 2 * userScale;
+              const hatTy = (costume.hatTy || 0) * 2 * userScale;
+              const hatScale = costume.hatScale !== undefined ? costume.hatScale : 1.0;
+
+              const scaledHatW = targetW * hatScale;
+              const scaledHatH = targetH * hatScale;
+              const hatDrawX = targetX + ((targetW - scaledHatW) / 2) + hatTx;
+              const hatDrawY = targetY + (targetH - scaledHatH) + hatTy;
+
+              const offHat = document.createElement('canvas');
+              offHat.width = scaledHatW;
+              offHat.height = scaledHatH;
+              const offCtxHat = offHat.getContext('2d');
+              offCtxHat.drawImage(hatImg, 0, 0, scaledHatW, scaledHatH);
+              offCtxHat.globalCompositeOperation = 'source-in';
+              offCtxHat.fillStyle = currentHatColor;
+              offCtxHat.fillRect(0, 0, scaledHatW, scaledHatH);
+
+              ctx.save();
+              ctx.globalCompositeOperation = 'multiply';
+              ctx.drawImage(offHat, hatDrawX, hatDrawY);
+              ctx.restore();
+            }
+          }
+
+          // 7. Túi
+          if (costume.bagMask) {
+            const bagImg = await loadImage(costume.bagMask);
+            if (bagImg) {
+              const offBag = document.createElement('canvas');
+              offBag.width = targetW;
+              offBag.height = targetH;
+              const offCtxBag = offBag.getContext('2d');
+              offCtxBag.drawImage(bagImg, 0, 0, targetW, targetH);
+              offCtxBag.globalCompositeOperation = 'source-in';
+              offCtxBag.fillStyle = currentBagColor;
+              offCtxBag.fillRect(0, 0, targetW, targetH);
+
+              ctx.save();
+              ctx.globalCompositeOperation = 'multiply';
+              ctx.drawImage(offBag, targetX, targetY);
+              ctx.restore();
+            }
+          }
+        }
+
+        // Watermark di sản (Light Theme)
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.92)';
+        ctx.fillRect(20, 1120, 760, 60);
+        ctx.fillStyle = '#B45309';
+        ctx.font = 'bold 20px Cinzel, serif';
+        ctx.fillText('việt phục vhs', 40, 1155);
+        ctx.fillStyle = '#1F1A17';
+        ctx.font = '14px Plus Jakarta Sans, sans-serif';
+        ctx.fillText(`${costume.name} • Áo: ${currentShirtColorName} • Quần: ${currentPantColorName}`, 240, 1155);
+
+        const dataUrl = canvas.toDataURL('image/png');
+        const a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = `VietPhucRemix_${currentCostumeKey}_${Date.now()}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        showToast('Đã tải ảnh Lookbook thành công!');
+      } catch (err) {
+        console.error('Lỗi canvas lookbook:', err);
+        showToast('Đã chụp xong ảnh!');
+      }
+    }
+
+    // =========================================================================
+    // TOAST NOTIFICATION
+    // =========================================================================
+    function showToast(message) {
+      const toast = document.getElementById('toastNotification');
+      const msg = document.getElementById('toastMessage');
+      if (!toast || !msg) return;
+
+      msg.textContent = message;
+      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      clearTimeout(window.__toastTimeout);
+      window.__toastTimeout = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
+      }, 2500);
+    }
+
+    // =========================================================================
+    // KHỞI TẠO BẢNG MÀU & ỨNG DỤNG KHI TẢI TRANG
+    // =========================================================================
+    function initColorPalettes() {
+      const shirtGrid = document.getElementById('shirtColorGrid');
+      const pantGrid = document.getElementById('pantColorGrid');
+
+      if (shirtGrid) {
+        shirtGrid.innerHTML = '';
+        PALETTE_COLORS.forEach(c => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = `shirt-color-btn w-full aspect-square rounded-lg transition-all duration-150 cursor-pointer border ${c.hex.toLowerCase() === currentShirtColor.toLowerCase() ? 'border-2 border-white scale-110 shadow-md ring-2 ring-[#1F1A17]' : 'border-[#E6DFD5] hover:scale-105 shadow-xs'}`;
+          btn.style.backgroundColor = c.hex;
+          btn.title = `${c.name} (${c.hex})`;
+          btn.onclick = () => setShirtColor(c.hex, c.name);
+          shirtGrid.appendChild(btn);
+        });
+      }
+
+      if (pantGrid) {
+        pantGrid.innerHTML = '';
+        PALETTE_COLORS.forEach(c => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = `pant-color-btn w-full aspect-square rounded-lg transition-all duration-150 cursor-pointer border ${c.hex.toLowerCase() === currentPantColor.toLowerCase() ? 'border-2 border-white scale-110 shadow-md ring-2 ring-[#1F1A17]' : 'border-[#E6DFD5] hover:scale-105 shadow-xs'}`;
+          btn.style.backgroundColor = c.hex;
+          btn.title = `${c.name} (${c.hex})`;
+          btn.onclick = () => setPantColor(c.hex, c.name);
+          pantGrid.appendChild(btn);
+        });
+      }
+
+      // Quick Swatches for Hair, Hat, Bag
+      const hairQuick = document.getElementById('hairQuickColors');
+      if (hairQuick) {
+        hairQuick.innerHTML = '';
+        QUICK_HAIR_COLORS.forEach(hex => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'w-4 h-4 rounded-full border border-[#E6DFD5] cursor-pointer hover:scale-110 transition-transform shadow-xs';
+          b.style.backgroundColor = hex;
+          b.onclick = () => setHairColor(hex, 'Tóc');
+          hairQuick.appendChild(b);
+        });
+      }
+
+      const hatQuick = document.getElementById('hatQuickColors');
+      if (hatQuick) {
+        hatQuick.innerHTML = '';
+        QUICK_HAT_COLORS.forEach(hex => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'w-4 h-4 rounded-full border border-[#E6DFD5] cursor-pointer hover:scale-110 transition-transform shadow-xs';
+          b.style.backgroundColor = hex;
+          b.onclick = () => setHatColor(hex, 'Mũ');
+          hatQuick.appendChild(b);
+        });
+      }
+
+      const bagQuick = document.getElementById('bagQuickColors');
+      if (bagQuick) {
+        bagQuick.innerHTML = '';
+        QUICK_BAG_COLORS.forEach(hex => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'w-4 h-4 rounded-full border border-[#E6DFD5] cursor-pointer hover:scale-110 transition-transform shadow-xs';
+          b.style.backgroundColor = hex;
+          b.onclick = () => setBagColor(hex, 'Túi');
+          bagQuick.appendChild(b);
+        });
+      }
+    }
+
+    // Đọc lookbook từ localStorage khi khởi động
+    function loadSavedLookbooks() {
+      try {
+        const saved = localStorage.getItem('vietphuc_lookbook');
+        if (saved) {
+          lookbookList = JSON.parse(saved);
+        }
+      } catch (e) {}
+      updateLookbookUI();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initColorPalettes();
+      loadSavedLookbooks();
+      changeCostume('nhatbinh');
+      setShirtColor('#D4AF37', 'Hoàng Kim Cửu Đỉnh');
+      setPantColor('#BA181B', 'Đỏ Điều Son');
+      setHairColor('#2D2D2D', 'Đen Tự Nhiên');
+      setHatColor('#EAB308', 'Hoàng Kim Khăn Vành');
+      setBagColor('#B45309', 'Hổ Phách Túi Gấm');
+      if (typeof updateAccessoriesUI === 'function') updateAccessoriesUI();
+      if (typeof evaluateHarmonyScore === 'function') evaluateHarmonyScore();
+      if (typeof renderGalleryCards === 'function') renderGalleryCards();
+    });
+  </script>
+</body>
+</html>
